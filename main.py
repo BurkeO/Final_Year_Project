@@ -2,11 +2,6 @@ import argparse
 from requests import get
 import time
 
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
 API_URL = "https://www.xeno-canto.org/api/2/recordings"
 
 
@@ -24,10 +19,11 @@ def main(args: argparse.Namespace) -> None:
             elif not response.json()['recordings']:
                 print(f'Empty recordings for country = {country}')
             json_response_data = response.json()
-            # print(json_response_data)
-            # for recording in json_response_data['recordings']:
-            #     print(f'recording = {recording}')
+            print(json_response_data)
+            for recording in json_response_data['recordings']:
+                print(f'recording = {recording}')
             time.sleep(1.5)
+            break
 
 
 def parse_args() -> argparse.Namespace:
@@ -41,5 +37,3 @@ def parse_args() -> argparse.Namespace:
 
 if __name__ == '__main__':
     main(parse_args())
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
