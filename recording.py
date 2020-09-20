@@ -1,10 +1,10 @@
 from requests import get
 from pathlib import Path
 from json import dump
-from typing import Callable
+from typing import Callable, Any
 
 
-def remove_invalid_path_char(member_function: Callable) -> Callable[[str], str]:
+def remove_invalid_path_char(member_function: Callable) -> Callable:
     def wrapper(recording) -> str:
         value = member_function(recording)
         invalid = '<>:"/\\|?*'
@@ -17,7 +17,7 @@ def remove_invalid_path_char(member_function: Callable) -> Callable[[str], str]:
 
 class Recording:
 
-    def __init__(self, recording_data_dict: {}, output_dir_path: str) -> None:
+    def __init__(self, recording_data_dict: {int, Any}, output_dir_path: str) -> None:
         self.data_dict = recording_data_dict
         self._output_dir_path = output_dir_path
         self.recording_file = self._download_file()
