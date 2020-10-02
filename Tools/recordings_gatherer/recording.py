@@ -1,6 +1,7 @@
 from requests import get
 from pathlib import Path
 from json import dump
+import time
 from typing import Callable, Any
 
 
@@ -43,7 +44,8 @@ class Recording:
                 f'{self.english_species.replace(" ", "_")}/{self.data_dict["id"]}')
 
     def _download_file(self) -> bytes:
-        file_content = get(url=f"http:{self.data_dict['file']}", allow_redirects=True)
+        file_content = get(url=f"http:{self.data_dict['file']}", allow_redirects=True, timeout=3)
+        time.sleep(3)
         return file_content.content
 
     def write(self) -> None:
