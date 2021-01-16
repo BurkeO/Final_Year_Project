@@ -1,0 +1,36 @@
+{
+    "id": "447057",
+    "gen": "Phoenicurus",
+    "sp": "ochruros",
+    "ssp": "",
+    "en": "Black Redstart",
+    "rec": "Harry Hussey",
+    "cnt": "Ireland",
+    "loc": "Cork, Cork City, County Cork",
+    "lat": "51.9006",
+    "lng": "-8.4492",
+    "alt": "0",
+    "type": "subsong",
+    "url": "//www.xeno-canto.org/447057",
+    "file": "//www.xeno-canto.org/447057/download",
+    "file-name": "XC447057-adult male Black Redstart subsong Kennedy Quay Cork city 23rd December 2018_HH_1.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC447057-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC447057-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC447057-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC447057-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "D",
+    "length": "11:14",
+    "time": "16:06",
+    "date": "2018-12-23",
+    "uploaded": "2018-12-23",
+    "also": [
+        "Turdus philomelos",
+        "Corvus cornix"
+    ],
+    "rmk": "More or less continuous subsong from an adult male before going to roost, incorporating a lot of mimicry. Species mimicked include Eurasian Wren, Blue Tit, Crested Tit, Tree Pipit, Dunnock, Common Chiffchaff. A few bursts of more typical, if subdued, Black Redstart song also included. High pass filter applied below 2kHz, but still a lot of background traffic noise from across the river.",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

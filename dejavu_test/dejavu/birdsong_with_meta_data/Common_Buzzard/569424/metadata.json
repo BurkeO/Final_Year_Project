@@ -1,0 +1,36 @@
+{
+    "id": "569424",
+    "gen": "Buteo",
+    "sp": "buteo",
+    "ssp": "buteo",
+    "en": "Common Buzzard",
+    "rec": "Harry Hussey",
+    "cnt": "Ireland",
+    "loc": "Lee Road, Cork, County Cork",
+    "lat": "51.901",
+    "lng": "-8.5417",
+    "alt": "10",
+    "type": "call, life stage uncertain, sex uncertain",
+    "url": "//www.xeno-canto.org/569424",
+    "file": "//www.xeno-canto.org/569424/download",
+    "file-name": "XC569424-territorial dispute calls from a small group of three Common Buzzards Lee Road 15th June 2020_HH_1.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC569424-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC569424-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC569424-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC569424-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "B",
+    "length": "1:31",
+    "time": "18:11",
+    "date": "2020-06-15",
+    "uploaded": "2020-06-17",
+    "also": [
+        "Turdus philomelos",
+        "Delichon urbicum"
+    ],
+    "rmk": "Some calls from three Common Buzzards caught up in a territorial dispute, with two more up and soaring around not too far away but remaining silent. One bird repeatedly dived at another at one stage. High pass filter applied below 2kHz, also noise reduction applied, but still some interference from traffic on nearby roads.",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

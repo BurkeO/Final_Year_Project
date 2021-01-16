@@ -1,0 +1,37 @@
+{
+    "id": "411490",
+    "gen": "Periparus",
+    "sp": "ater",
+    "ssp": "",
+    "en": "Coal Tit",
+    "rec": "Harry Hussey",
+    "cnt": "Ireland",
+    "loc": "Power Head, County Cork",
+    "lat": "51.7972",
+    "lng": "-8.1736",
+    "alt": "20",
+    "type": "song",
+    "url": "//www.xeno-canto.org/411490",
+    "file": "//www.xeno-canto.org/411490/download",
+    "file-name": "XC411490-odd Blue Tit-like Coal Tit song Power Head 19th April 2018_HH_1.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC411490-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC411490-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC411490-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC411490-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "B",
+    "length": "1:11",
+    "time": "13:30",
+    "date": "2018-04-19",
+    "uploaded": "2018-04-19",
+    "also": [
+        "Chloris chloris",
+        "Phylloscopus collybita",
+        "Turdus merula"
+    ],
+    "rmk": "Odd, probably aberrant, song type, vaguely reminiscent in form of the common song of Blue Tit. Possibly imperfect mimicry by the Coal Tit? Some high pass filter applied due to the proximity of running water.",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

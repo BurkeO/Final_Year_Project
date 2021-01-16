@@ -1,0 +1,35 @@
+{
+    "id": "565383",
+    "gen": "Turdus",
+    "sp": "merula",
+    "ssp": "",
+    "en": "Common Blackbird",
+    "rec": "Mr Mark Shorten",
+    "cnt": "Ireland",
+    "loc": "Ireland (near  Cork), Cork City, County Cork",
+    "lat": "51.8983",
+    "lng": "-8.4896",
+    "alt": "10",
+    "type": "adult, male, song",
+    "url": "//www.xeno-canto.org/565383",
+    "file": "//www.xeno-canto.org/565383/download",
+    "file-name": "XC565383-4june blackbird.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/UPZQVPMXNE/ffts/XC565383-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/UPZQVPMXNE/ffts/XC565383-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/UPZQVPMXNE/ffts/XC565383-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/UPZQVPMXNE/ffts/XC565383-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "B",
+    "length": "0:32",
+    "time": "04:00",
+    "date": "2020-06-05",
+    "uploaded": "2020-06-05",
+    "also": [
+        ""
+    ],
+    "rmk": "early morning song",
+    "bird-seen": "no",
+    "playback-used": "no"
+}

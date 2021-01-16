@@ -1,0 +1,35 @@
+{
+    "id": "567543",
+    "gen": "Hirundo",
+    "sp": "rustica",
+    "ssp": "",
+    "en": "Barn Swallow",
+    "rec": "Mr Mark Shorten",
+    "cnt": "Ireland",
+    "loc": "Ireland (near  Cork), Cork City, County Cork",
+    "lat": "51.899",
+    "lng": "-8.4945",
+    "alt": "30",
+    "type": "alarm call, flight call, life stage uncertain, sex uncertain",
+    "url": "//www.xeno-canto.org/567543",
+    "file": "//www.xeno-canto.org/567543/download",
+    "file-name": "XC567543-11june swallow alarm.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/UPZQVPMXNE/ffts/XC567543-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/UPZQVPMXNE/ffts/XC567543-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/UPZQVPMXNE/ffts/XC567543-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/UPZQVPMXNE/ffts/XC567543-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "B",
+    "length": "0:05",
+    "time": "20:00",
+    "date": "2020-06-11",
+    "uploaded": "2020-06-12",
+    "also": [
+        ""
+    ],
+    "rmk": "short alarm call",
+    "bird-seen": "no",
+    "playback-used": "no"
+}

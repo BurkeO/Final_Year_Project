@@ -1,0 +1,35 @@
+{
+    "id": "191408",
+    "gen": "Periparus",
+    "sp": "ater",
+    "ssp": "",
+    "en": "Coal Tit",
+    "rec": "Oscar Campbell",
+    "cnt": "Ireland",
+    "loc": "County Donegal, Donegal",
+    "lat": "55.0496",
+    "lng": "-7.9383",
+    "alt": "50",
+    "type": "call, song",
+    "url": "//www.xeno-canto.org/191408",
+    "file": "//www.xeno-canto.org/191408/download",
+    "file-name": "XC191408-140813_STE-070_CoalTit_Glenveagh_OC.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/RFRTVEHIZX/ffts/XC191408-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/RFRTVEHIZX/ffts/XC191408-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/RFRTVEHIZX/ffts/XC191408-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/RFRTVEHIZX/ffts/XC191408-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "A",
+    "length": "1:04",
+    "time": "15:00",
+    "date": "2014-08-13",
+    "uploaded": "2014-08-18",
+    "also": [
+        ""
+    ],
+    "rmk": "Birds calling from flock in overhead trees near lough.",
+    "bird-seen": "yes",
+    "playback-used": "yes"
+}

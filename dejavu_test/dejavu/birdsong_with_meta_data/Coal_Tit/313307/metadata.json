@@ -1,0 +1,35 @@
+{
+    "id": "313307",
+    "gen": "Periparus",
+    "sp": "ater",
+    "ssp": "hibernicus",
+    "en": "Coal Tit",
+    "rec": "Harry Hussey",
+    "cnt": "Ireland",
+    "loc": "Cork, Cork City, Cork",
+    "lat": "51.8882",
+    "lng": "-8.4787",
+    "alt": "?",
+    "type": "song",
+    "url": "//www.xeno-canto.org/313307",
+    "file": "//www.xeno-canto.org/313307/download",
+    "file-name": "XC313307-male Coal Tit song Mardyke Walk 1st April 2008.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC313307-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC313307-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC313307-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC313307-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "E",
+    "length": "0:49",
+    "time": "?",
+    "date": "2008-04-01",
+    "uploaded": "2016-04-22",
+    "also": [
+        "Erithacus rubecula"
+    ],
+    "rmk": "Alternate song type.",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

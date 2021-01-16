@@ -1,0 +1,35 @@
+{
+    "id": "402976",
+    "gen": "Buteo",
+    "sp": "buteo",
+    "ssp": "buteo",
+    "en": "Common Buzzard",
+    "rec": "Harry Hussey",
+    "cnt": "Ireland",
+    "loc": "Cuskinny Marsh, County Cork",
+    "lat": "51.8603",
+    "lng": "-8.2672",
+    "alt": "0",
+    "type": "call",
+    "url": "//www.xeno-canto.org/402976",
+    "file": "//www.xeno-canto.org/402976/download",
+    "file-name": "XC402976-Common Buzzard flight calls Cuskinny 14th February 2018_HH_1.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC402976-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC402976-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC402976-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC402976-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "C",
+    "length": "0:47",
+    "time": "14:00",
+    "date": "2018-02-14",
+    "uploaded": "2018-02-18",
+    "also": [
+        ""
+    ],
+    "rmk": "Calls given by four birds interacting as they soared over a hillside.",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

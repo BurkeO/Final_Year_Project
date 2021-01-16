@@ -1,0 +1,36 @@
+{
+    "id": "416955",
+    "gen": "Hirundo",
+    "sp": "rustica",
+    "ssp": "",
+    "en": "Barn Swallow",
+    "rec": "Harry Hussey",
+    "cnt": "Ireland",
+    "loc": "Power Head, County Cork",
+    "lat": "51.7952",
+    "lng": "-8.1764",
+    "alt": "10",
+    "type": "song",
+    "url": "//www.xeno-canto.org/416955",
+    "file": "//www.xeno-canto.org/416955/download",
+    "file-name": "XC416955-song from a perched Barn Swallow near its mate Power Head 25th May 2018_HH_1.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC416955-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC416955-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC416955-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC416955-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "A",
+    "length": "1:08",
+    "time": "14:36",
+    "date": "2018-05-25",
+    "uploaded": "2018-05-26",
+    "also": [
+        "Troglodytes troglodytes",
+        "Sturnus vulgaris"
+    ],
+    "rmk": "Song from a presumed male as it perched on telegraph wires next to its presumed mate. High pass filter applied below 1kHz, mainly due to the presence of some vocal sheep in the background!",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

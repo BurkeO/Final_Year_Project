@@ -1,0 +1,35 @@
+{
+    "id": "534100",
+    "gen": "Fringilla",
+    "sp": "coelebs",
+    "ssp": "",
+    "en": "Common Chaffinch",
+    "rec": "Sue Riffe",
+    "cnt": "Ireland",
+    "loc": "Connemara NP, Cty Galway",
+    "lat": "53.5384",
+    "lng": "-9.8875",
+    "alt": "220",
+    "type": "adult, male, song",
+    "url": "//www.xeno-canto.org/534100",
+    "file": "//www.xeno-canto.org/534100/download",
+    "file-name": "XC534100-Common Chaffinch at Connemara NP IR on 6.3.19 at 11.50 for 1.21.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/PVQOLRXXWL/ffts/XC534100-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/PVQOLRXXWL/ffts/XC534100-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/PVQOLRXXWL/ffts/XC534100-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/PVQOLRXXWL/ffts/XC534100-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "B",
+    "length": "1:21",
+    "time": "11:50",
+    "date": "2019-06-03",
+    "uploaded": "2020-03-12",
+    "also": [
+        "Troglodytes troglodytes"
+    ],
+    "rmk": "Natural vocalization while three birds were foraging on or near the ground",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

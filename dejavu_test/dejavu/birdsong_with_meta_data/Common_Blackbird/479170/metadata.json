@@ -1,0 +1,35 @@
+{
+    "id": "479170",
+    "gen": "Turdus",
+    "sp": "merula",
+    "ssp": "merula",
+    "en": "Common Blackbird",
+    "rec": "Daniel Parker",
+    "cnt": "Ireland",
+    "loc": "Ennis, County Clare",
+    "lat": null,
+    "lng": null,
+    "alt": "?",
+    "type": "song",
+    "url": "//www.xeno-canto.org/479170",
+    "file": "//www.xeno-canto.org/479170/download",
+    "file-name": "XC479170-Common_Blackbird_1.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/AMMGWAIZWI/ffts/XC479170-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/AMMGWAIZWI/ffts/XC479170-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/AMMGWAIZWI/ffts/XC479170-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/AMMGWAIZWI/ffts/XC479170-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "D",
+    "length": "0:17",
+    "time": "8:10",
+    "date": "2018-08-18",
+    "uploaded": "2019-06-07",
+    "also": [
+        ""
+    ],
+    "rmk": "Distant.",
+    "bird-seen": "no",
+    "playback-used": "no"
+}

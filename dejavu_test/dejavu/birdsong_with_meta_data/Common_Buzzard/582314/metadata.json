@@ -1,0 +1,35 @@
+{
+    "id": "582314",
+    "gen": "Buteo",
+    "sp": "buteo",
+    "ssp": "",
+    "en": "Common Buzzard",
+    "rec": "Oscar Campbell",
+    "cnt": "Ireland",
+    "loc": "Dunfananaghy - New Lake",
+    "lat": "55.1759",
+    "lng": "-7.9975",
+    "alt": "0",
+    "type": "flight call",
+    "url": "//www.xeno-canto.org/582314",
+    "file": "//www.xeno-canto.org/582314/download",
+    "file-name": "XC582314-200723_CommonBuzzard_calls_NewLake_OC.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/RFRTVEHIZX/ffts/XC582314-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/RFRTVEHIZX/ffts/XC582314-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/RFRTVEHIZX/ffts/XC582314-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/RFRTVEHIZX/ffts/XC582314-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "A",
+    "length": "1:05",
+    "time": "15:00",
+    "date": "2020-07-23",
+    "uploaded": "2020-08-14",
+    "also": [
+        ""
+    ],
+    "rmk": "Pair of adults, calling whilst soaring over dunes between lake and shoreline.",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

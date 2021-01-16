@@ -1,0 +1,37 @@
+{
+    "id": "364867",
+    "gen": "Periparus",
+    "sp": "ater",
+    "ssp": "hibernicus",
+    "en": "Coal Tit",
+    "rec": "Bernard King",
+    "cnt": "Ireland",
+    "loc": "Corballis Hill, Kildare, County Kildare",
+    "lat": "52.9304",
+    "lng": "-6.7794",
+    "alt": "240",
+    "type": "song",
+    "url": "//www.xeno-canto.org/364867",
+    "file": "//www.xeno-canto.org/364867/download",
+    "file-name": "XC364867-Coal Tit_Kildare_ire_20160415_00926.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/EKBTHARWHW/ffts/XC364867-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/EKBTHARWHW/ffts/XC364867-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/EKBTHARWHW/ffts/XC364867-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/EKBTHARWHW/ffts/XC364867-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "A",
+    "length": "0:36",
+    "time": "10:00",
+    "date": "2017-04-15",
+    "uploaded": "2017-04-17",
+    "also": [
+        "Turdus philomelos",
+        "Corvus cornix",
+        "Troglodytes troglodytes"
+    ],
+    "rmk": "Bird singing from edge of conifer plantation. Sort bursts of song whilst preening.",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

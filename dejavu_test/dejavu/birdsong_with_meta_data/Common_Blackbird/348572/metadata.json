@@ -1,0 +1,35 @@
+{
+    "id": "348572",
+    "gen": "Turdus",
+    "sp": "merula",
+    "ssp": "",
+    "en": "Common Blackbird",
+    "rec": "Harry Hussey",
+    "cnt": "Ireland",
+    "loc": "Cork, Cork City, Cork",
+    "lat": "51.8882",
+    "lng": "-8.4787",
+    "alt": "30",
+    "type": "song",
+    "url": "//www.xeno-canto.org/348572",
+    "file": "//www.xeno-canto.org/348572/download",
+    "file-name": "XC348572-male Eurasian Blackbird song in the garden 30th December 2016_HH_1.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC348572-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC348572-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC348572-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC348572-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "A",
+    "length": "4:09",
+    "time": "16:30",
+    "date": "2016-12-30",
+    "uploaded": "2017-01-01",
+    "also": [
+        ""
+    ],
+    "rmk": "A bird incorporating mimicry, usually near the end of a song strophe, including Greenfinch, Goldfinch, Starling, Great Tit(?).",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

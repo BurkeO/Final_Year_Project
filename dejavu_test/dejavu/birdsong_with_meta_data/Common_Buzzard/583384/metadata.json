@@ -1,0 +1,35 @@
+{
+    "id": "583384",
+    "gen": "Buteo",
+    "sp": "buteo",
+    "ssp": "",
+    "en": "Common Buzzard",
+    "rec": "Mr Mark Shorten",
+    "cnt": "Ireland",
+    "loc": "Ireland, Cork, County Cork",
+    "lat": "52.0619",
+    "lng": "-8.2563",
+    "alt": "100",
+    "type": "call",
+    "url": "//www.xeno-canto.org/583384",
+    "file": "//www.xeno-canto.org/583384/download",
+    "file-name": "XC583384-18aug20 buzzard 3 bride.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/UPZQVPMXNE/ffts/XC583384-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/UPZQVPMXNE/ffts/XC583384-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/UPZQVPMXNE/ffts/XC583384-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/UPZQVPMXNE/ffts/XC583384-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "B",
+    "length": "0:56",
+    "time": "11:30",
+    "date": "2020-08-18",
+    "uploaded": "2020-08-19",
+    "also": [
+        ""
+    ],
+    "rmk": "three birds, 2 probably juveniles begging flying after adult. Ls-p1",
+    "bird-seen": "yes",
+    "playback-used": "unknown"
+}

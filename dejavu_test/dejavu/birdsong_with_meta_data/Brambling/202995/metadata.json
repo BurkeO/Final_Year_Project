@@ -1,0 +1,35 @@
+{
+    "id": "202995",
+    "gen": "Fringilla",
+    "sp": "montifringilla",
+    "ssp": "",
+    "en": "Brambling",
+    "rec": "Anthony McGeehan ",
+    "cnt": "Ireland",
+    "loc": "Inishbofin, County Galway",
+    "lat": "53.6161",
+    "lng": "-10.1873",
+    "alt": "20",
+    "type": "call",
+    "url": "//www.xeno-canto.org/202995",
+    "file": "//www.xeno-canto.org/202995/download",
+    "file-name": "XC202995-Brambling 14-10-14 1201hrs.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/TYEQKORVXJ/ffts/XC202995-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/TYEQKORVXJ/ffts/XC202995-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/TYEQKORVXJ/ffts/XC202995-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/TYEQKORVXJ/ffts/XC202995-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "C",
+    "length": "0:06",
+    "time": "12:00",
+    "date": "2014-10-14",
+    "uploaded": "2014-11-19",
+    "also": [
+        ""
+    ],
+    "rmk": "Two calls from a lone migrant Brambling that perched beside a small, partly dug, patch of root crops, mainly potatoes.",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

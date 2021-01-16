@@ -1,0 +1,36 @@
+{
+    "id": "441003",
+    "gen": "Buteo",
+    "sp": "buteo",
+    "ssp": "",
+    "en": "Common Buzzard",
+    "rec": "Harry Hussey",
+    "cnt": "Ireland",
+    "loc": "Inch, County Cork",
+    "lat": "51.7979",
+    "lng": "-8.1822",
+    "alt": "10",
+    "type": "call",
+    "url": "//www.xeno-canto.org/441003",
+    "file": "//www.xeno-canto.org/441003/download",
+    "file-name": "XC441003-calls from a Common Buzzard in flight Inch Power Head 1st November 2018_HH_1.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC441003-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC441003-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC441003-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC441003-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "B",
+    "length": "0:21",
+    "time": "13:56",
+    "date": "2018-11-01",
+    "uploaded": "2018-11-01",
+    "also": [
+        "Fringilla coelebs",
+        "Emberiza citrinella"
+    ],
+    "rmk": "Calls from a Common Buzzard in flight, seemingly triggered by an intruding juvenile bird. High pass filter applied below 500Hz.",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

@@ -1,0 +1,35 @@
+{
+    "id": "276740",
+    "gen": "Periparus",
+    "sp": "ater",
+    "ssp": "",
+    "en": "Coal Tit",
+    "rec": "L\u00fcthi Thomas",
+    "cnt": "Ireland",
+    "loc": "Clare, Clare",
+    "lat": "52.6709",
+    "lng": "-9.6573",
+    "alt": "10",
+    "type": "call, song",
+    "url": "//www.xeno-canto.org/276740",
+    "file": "//www.xeno-canto.org/276740/download",
+    "file-name": "XC276740-LS_30231Tannenmeise.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/TOKIKPVFMA/ffts/XC276740-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/TOKIKPVFMA/ffts/XC276740-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/TOKIKPVFMA/ffts/XC276740-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/TOKIKPVFMA/ffts/XC276740-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "C",
+    "length": "1:57",
+    "time": "17:11",
+    "date": "2015-08-16",
+    "uploaded": "2015-08-28",
+    "also": [
+        ""
+    ],
+    "rmk": "",
+    "bird-seen": "yes",
+    "playback-used": "yes"
+}

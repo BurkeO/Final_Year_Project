@@ -1,0 +1,35 @@
+{
+    "id": "534144",
+    "gen": "Periparus",
+    "sp": "ater",
+    "ssp": "",
+    "en": "Coal Tit",
+    "rec": "Sue Riffe",
+    "cnt": "Ireland",
+    "loc": "Connemara NP, Cty Galway",
+    "lat": "53.5384",
+    "lng": "-9.8875",
+    "alt": "220",
+    "type": "adult, call, sex uncertain, song",
+    "url": "//www.xeno-canto.org/534144",
+    "file": "//www.xeno-canto.org/534144/download",
+    "file-name": "XC534144-Coal Tits at Connamera NP IR on 6.3.19 at 17.41 for .40.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/PVQOLRXXWL/ffts/XC534144-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/PVQOLRXXWL/ffts/XC534144-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/PVQOLRXXWL/ffts/XC534144-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/PVQOLRXXWL/ffts/XC534144-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "B",
+    "length": "0:40",
+    "time": "17:41",
+    "date": "2019-06-03",
+    "uploaded": "2020-03-12",
+    "also": [
+        ""
+    ],
+    "rmk": "Natural vocalization of two birds middle level in tree",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

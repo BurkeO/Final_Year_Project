@@ -1,0 +1,35 @@
+{
+    "id": "404101",
+    "gen": "Fringilla",
+    "sp": "coelebs",
+    "ssp": "",
+    "en": "Common Chaffinch",
+    "rec": "Bernard King",
+    "cnt": "Ireland",
+    "loc": "Maganey, Kildare",
+    "lat": "52.9057",
+    "lng": "-6.9365",
+    "alt": "50",
+    "type": "male, song",
+    "url": "//www.xeno-canto.org/404101",
+    "file": "//www.xeno-canto.org/404101/download",
+    "file-name": "XC404101-Chaffinch Song.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/EKBTHARWHW/ffts/XC404101-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/EKBTHARWHW/ffts/XC404101-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/EKBTHARWHW/ffts/XC404101-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/EKBTHARWHW/ffts/XC404101-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "B",
+    "length": "1:04",
+    "time": "09:00",
+    "date": "2018-02-17",
+    "uploaded": "2018-03-01",
+    "also": [
+        ""
+    ],
+    "rmk": "",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

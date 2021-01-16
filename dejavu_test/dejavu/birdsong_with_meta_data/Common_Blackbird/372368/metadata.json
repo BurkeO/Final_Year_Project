@@ -1,0 +1,35 @@
+{
+    "id": "372368",
+    "gen": "Turdus",
+    "sp": "merula",
+    "ssp": "",
+    "en": "Common Blackbird",
+    "rec": "GABRIEL LEITE",
+    "cnt": "Ireland",
+    "loc": "Dublin, Dublin City, County Dublin",
+    "lat": "53.3735",
+    "lng": "-6.172",
+    "alt": "30",
+    "type": "call",
+    "url": "//www.xeno-canto.org/372368",
+    "file": "//www.xeno-canto.org/372368/download",
+    "file-name": "XC372368-Turdus merula_Dublin_1512.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/TGBFXDVERJ/ffts/XC372368-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/TGBFXDVERJ/ffts/XC372368-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/TGBFXDVERJ/ffts/XC372368-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/TGBFXDVERJ/ffts/XC372368-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "B",
+    "length": "0:24",
+    "time": "08:00",
+    "date": "2017-05-27",
+    "uploaded": "2017-05-28",
+    "also": [
+        ""
+    ],
+    "rmk": "",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

@@ -1,0 +1,35 @@
+{
+    "id": "448320",
+    "gen": "Phoenicurus",
+    "sp": "ochruros",
+    "ssp": "",
+    "en": "Black Redstart",
+    "rec": "Harry Hussey",
+    "cnt": "Ireland",
+    "loc": "Cork, Cork City, County Cork",
+    "lat": "51.9006",
+    "lng": "-8.4492",
+    "alt": "0",
+    "type": "call",
+    "url": "//www.xeno-canto.org/448320",
+    "file": "//www.xeno-canto.org/448320/download",
+    "file-name": "XC448320-calls from an adult male Black Redstart Kennedy Quay Cork city 1st January 2019_HH_1.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC448320-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC448320-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC448320-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC448320-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "C",
+    "length": "1:53",
+    "time": "15:30",
+    "date": "2019-01-01",
+    "uploaded": "2019-01-01",
+    "also": [
+        "Corvus cornix"
+    ],
+    "rmk": "Persistent calling from an adult male. High pass filter applied below 2kHz.",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

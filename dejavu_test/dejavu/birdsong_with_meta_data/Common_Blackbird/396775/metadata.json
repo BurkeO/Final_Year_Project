@@ -1,0 +1,35 @@
+{
+    "id": "396775",
+    "gen": "Turdus",
+    "sp": "merula",
+    "ssp": "",
+    "en": "Common Blackbird",
+    "rec": "Harry Hussey",
+    "cnt": "Ireland",
+    "loc": "Cork, Cork City, County Cork",
+    "lat": "51.9036",
+    "lng": "-8.4871",
+    "alt": "70",
+    "type": "song",
+    "url": "//www.xeno-canto.org/396775",
+    "file": "//www.xeno-canto.org/396775/download",
+    "file-name": "XC396775-male Blackbird in song at dusk St Ritas 23rd December 2017_HH_1.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC396775-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC396775-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC396775-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC396775-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "B",
+    "length": "3:59",
+    "time": "17:00",
+    "date": "2017-12-23",
+    "uploaded": "2017-12-23",
+    "also": [
+        ""
+    ],
+    "rmk": "Male in song just after dusk.",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

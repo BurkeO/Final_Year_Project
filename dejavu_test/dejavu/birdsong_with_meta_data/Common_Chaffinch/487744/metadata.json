@@ -1,0 +1,35 @@
+{
+    "id": "487744",
+    "gen": "Fringilla",
+    "sp": "coelebs",
+    "ssp": "",
+    "en": "Common Chaffinch",
+    "rec": "Sue Riffe",
+    "cnt": "Ireland",
+    "loc": "Glendalough Park, Wicklow",
+    "lat": "53.0055",
+    "lng": "-6.3472",
+    "alt": "140",
+    "type": "song",
+    "url": "//www.xeno-canto.org/487744",
+    "file": "//www.xeno-canto.org/487744/download",
+    "file-name": "XC487744-Common Chaffinch on 5.31.19 at Glendalough Ireland for .31.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/PVQOLRXXWL/ffts/XC487744-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/PVQOLRXXWL/ffts/XC487744-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/PVQOLRXXWL/ffts/XC487744-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/PVQOLRXXWL/ffts/XC487744-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "C",
+    "length": "0:31",
+    "time": "12:30",
+    "date": "2019-05-31",
+    "uploaded": "2019-07-16",
+    "also": [
+        ""
+    ],
+    "rmk": "Natural vocalization",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}

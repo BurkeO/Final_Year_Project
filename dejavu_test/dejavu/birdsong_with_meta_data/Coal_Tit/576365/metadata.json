@@ -1,0 +1,35 @@
+{
+    "id": "576365",
+    "gen": "Periparus",
+    "sp": "ater",
+    "ssp": "hibernicus",
+    "en": "Coal Tit",
+    "rec": "Mr Mark Shorten",
+    "cnt": "Ireland",
+    "loc": "Ireland, Cork, County Cork",
+    "lat": "52.0272",
+    "lng": "-8.9217",
+    "alt": "440",
+    "type": "call, life stage uncertain, sex uncertain",
+    "url": "//www.xeno-canto.org/576365",
+    "file": "//www.xeno-canto.org/576365/download",
+    "file-name": "XC576365-16july20 coal tit mush3.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/UPZQVPMXNE/ffts/XC576365-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/UPZQVPMXNE/ffts/XC576365-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/UPZQVPMXNE/ffts/XC576365-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/UPZQVPMXNE/ffts/XC576365-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "B",
+    "length": "0:35",
+    "time": "09:30",
+    "date": "2020-07-16",
+    "uploaded": "2020-07-16",
+    "also": [
+        "Regulus regulus"
+    ],
+    "rmk": "in conifer forest",
+    "bird-seen": "no",
+    "playback-used": "no"
+}

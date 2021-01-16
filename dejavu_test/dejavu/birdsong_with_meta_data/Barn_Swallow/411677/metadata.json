@@ -1,0 +1,35 @@
+{
+    "id": "411677",
+    "gen": "Hirundo",
+    "sp": "rustica",
+    "ssp": "",
+    "en": "Barn Swallow",
+    "rec": "Harry Hussey",
+    "cnt": "Ireland",
+    "loc": "Inch, County Cork",
+    "lat": "51.7979",
+    "lng": "-8.1822",
+    "alt": "10",
+    "type": "song",
+    "url": "//www.xeno-canto.org/411677",
+    "file": "//www.xeno-canto.org/411677/download",
+    "file-name": "XC411677-male Barn Swallow song Power Head 19th April 2018_HH_1.mp3",
+    "sono": {
+        "small": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC411677-small.png",
+        "med": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC411677-med.png",
+        "large": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC411677-large.png",
+        "full": "//www.xeno-canto.org/sounds/uploaded/FPZJLPQQAV/ffts/XC411677-full.png"
+    },
+    "lic": "//creativecommons.org/licenses/by-nc-sa/4.0/",
+    "q": "B",
+    "length": "0:24",
+    "time": "12:03",
+    "date": "2018-04-19",
+    "uploaded": "2018-04-21",
+    "also": [
+        ""
+    ],
+    "rmk": "Some song-like notes from a presumed male in flight. High pass filter applied below 2kHz.",
+    "bird-seen": "yes",
+    "playback-used": "no"
+}
