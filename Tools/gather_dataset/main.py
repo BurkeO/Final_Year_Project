@@ -1,12 +1,23 @@
 import argparse
+from pathlib import Path
+from shutil import copyfile
 
 
 def main(args: argparse.Namespace):
-    print(args.number)
-    print(args.species)
-    print(args.folder)
-    print(args.input)
-    print(args.extension)
+    input_folder = Path(args.input)
+    species_to_files = dict.fromkeys(args.species, [])
+    for file_path in input_folder.glob(f'**/*' + args.extension):
+        for species in args.species:
+            if species in str(file_path) and len(species_to_files[species]) < args.number:
+                species_to_files[species].append(str(file_path))
+
+    for species, path_list in species_to_files.items():
+        dst_path = Path(f'{args.folder}/{species}')
+        dst_path.mkdir(parents=True, exist_ok=True)
+        count = 0
+        for path in path_list:
+            copyfile(path, f'{dst_path}/{species}_{count}{args.extension}')
+            count += 1
 
 
 def parse_args():
