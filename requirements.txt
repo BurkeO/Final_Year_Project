@@ -1,0 +1,16 @@
+pydub~=0.23.1
+requests~=2.24.0
+pip~=20.2.2
+zlib~=1.2.11
+wheel~=0.35.1
+openssl~=1.1.1i
+cryptography~=3.1
+py~=1.9.0
+typing_extensions~=3.7.4.3
+setuptools~=49.6.0
+scipy~=1.6.0
+numpy~=1.19.5
+librosa~=0.8.0
+pandas~=1.2.0
+scikit-learn~=0.24.0
+tensorflow~=2.3.0
