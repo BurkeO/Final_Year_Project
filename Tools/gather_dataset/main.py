@@ -5,10 +5,13 @@ from shutil import copyfile
 
 def main(args: argparse.Namespace):
     input_folder = Path(args.input)
-    species_to_files = dict.fromkeys(args.species, [])
+    species_to_files = {}
     for file_path in input_folder.glob(f'**/*' + args.extension):
         for species in args.species:
-            if species in str(file_path) and len(species_to_files[species]) < args.number:
+            if species not in species_to_files:
+                species_to_files[species] = []
+            species_from_path = str(file_path).split('\\')[-3]
+            if species == species_from_path and len(species_to_files[species]) < args.number:
                 species_to_files[species].append(str(file_path))
 
     for species, path_list in species_to_files.items():
