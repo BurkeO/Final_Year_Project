@@ -13,13 +13,16 @@ def main(args: argparse.Namespace):
             species_from_path = str(file_path).split('\\')[-3]
             if species.lower() == species_from_path.lower() and len(species_to_files[species]) < args.number:
                 species_to_files[species].append(str(file_path))
+                print(f'Gathered {species} {len(species_to_files[species])}')
 
+    print(f'\nCopying.........')
     for species, path_list in species_to_files.items():
         dst_path = Path(f'{args.folder}/{species}')
         dst_path.mkdir(parents=True, exist_ok=True)
         count = 0
         for path in path_list:
             copyfile(path, f'{dst_path}/{species}_{count}{args.extension}')
+            print(f'Copied {species} {count+1}')
             count += 1
 
 
