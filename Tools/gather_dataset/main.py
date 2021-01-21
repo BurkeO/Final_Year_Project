@@ -11,7 +11,7 @@ def main(args: argparse.Namespace):
             if species not in species_to_files:
                 species_to_files[species] = []
             species_from_path = str(file_path).split('\\')[-3]
-            if species == species_from_path and len(species_to_files[species]) < args.number:
+            if species.lower() == species_from_path.lower() and len(species_to_files[species]) < args.number:
                 species_to_files[species].append(str(file_path))
 
     for species, path_list in species_to_files.items():
