@@ -17,17 +17,20 @@ def main():
     birdsong_path = Path("birdsong")
     for train_wav_path in ["D:/Users/Owen/Final_Year_Project/birdsong/Common_Wood_Pigeon/Common_Wood_Pigeon_0.wav"]:  # birdsong_path.glob('**/*.wav'):
         audio, sr = librosa.load(train_wav_path, librosa.get_samplerate(train_wav_path))
+        # with open('audio.txt', 'w') as f:
+        #     for item in audio:
+        #         f.write(f'{item}, ')
         spectrogram = librosa.feature.melspectrogram(y=audio, sr=sr)
-        librosa.display.specshow(librosa.power_to_db(spectrogram, ref=np.max), fmax=10000, y_axis='mel',
-                                 x_axis='time')
+        db = librosa.power_to_db(spectrogram, ref=np.max)
+        librosa.display.specshow(db, fmax=10000, y_axis='mel', x_axis='time')
         plt.savefig('test.png')
 
         # species = str(train_wav_path).split('//')[1]
         # if species in species_to_count_dict and species_to_count_dict[species] > NUMBER_OF_IMAGES_PER_CLASS:
         #     continue
         # print(f'making images for {train_wav_path.name}')
-        # test_stream = librosa.stream(train_wav_path, block_length=128, frame_length=2048, hop_length=1024,
-        #                              fill_value=0.0)
+        test_stream = librosa.stream(train_wav_path, block_length=128, frame_length=2048, hop_length=1024,
+                                     fill_value=0.0)
         # block_list = [block for block in test_stream][:-1]
         # for index, test_block in enumerate(block_list):
         #     if species not in species_to_count_dict:

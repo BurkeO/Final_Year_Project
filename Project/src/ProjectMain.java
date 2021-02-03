@@ -1,109 +1,142 @@
 import be.tarsos.dsp.AudioDispatcher;
+import be.tarsos.dsp.AudioEvent;
+import be.tarsos.dsp.AudioProcessor;
+import be.tarsos.dsp.io.TarsosDSPAudioFormat;
 import be.tarsos.dsp.io.TarsosDSPAudioInputStream;
+import be.tarsos.dsp.io.UniversalAudioInputStream;
 import be.tarsos.dsp.io.jvm.JVMAudioInputStream;
 
+import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
+//import be.tarsos.dsp.mfcc.MFCC;
 import com.jlibrosa.audio.wavFile.WavFile;
 import com.jlibrosa.audio.wavFile.WavFileException;
 import com.jlibrosa.audio.process.AudioFeatureExtraction;
 
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.tensorflow.Operand;
+import org.tensorflow.op.Scope;
+import org.tensorflow.op.audio.Mfcc;
+
+import jm.util.*;
+import me.gommeantilegit.sonopy.Sonopy;
 
 import org.opencv.core.Mat;
 
 public class ProjectMain
 {
-    public static void main(String[] args) throws IOException, WavFileException
+    public static double[][] powerToDb(double[][] melS)
     {
-//        File initialFile = new File("D:/Users/Owen/Final_Year_Project/recordings/Ireland/Common_Wood_Pigeon/372363/XC372363-Columba_palumbus_Dublin_1518.mp3");
+        //Convert a power spectrogram (amplitude squared) to decibel (dB) units
+        //  This computes the scaling ``10 * log10(S / ref)`` in a numerically
+        //  stable way.
+        double[][] log_spec = new double[melS.length][melS[0].length];
+        double maxValue = -100;
+        for (int i = 0; i < melS.length; i++)
+        {
+            for (int j = 0; j < melS[0].length; j++)
+            {
+                double magnitude = Math.abs(melS[i][j]);
+                if (magnitude > 1e-10)
+                {
+                    log_spec[i][j] = 10.0 * log10(magnitude);
+                }
+                else
+                {
+                    log_spec[i][j] = 10.0 * (-10);
+                }
+                if (log_spec[i][j] > maxValue)
+                {
+                    maxValue = log_spec[i][j];
+                }
+            }
+        }
+        //set top_db to 80.0
+        for (int i = 0; i < melS.length; i++)
+        {
+            for (int j = 0; j < melS[0].length; j++)
+            {
+                if (log_spec[i][j] < maxValue - 80.0)
+                {
+                    log_spec[i][j] = maxValue - 80.0;
+                }
+            }
+        }
+        //ref is disabled, maybe later.
+        return log_spec;
+    }
+
+    private static double log10(double value)
+    {
+        return Math.log(value) / Math.log(10);
+    }
+
+    public static void main(String[] args) throws IOException
+    {
+//        File f = new File("D:/Users/Owen/Final_Year_Project/birdsong/Common_Wood_Pigeon/Common_Wood_Pigeon_0.wav");
+//
+//        String file_path = f.getAbsolutePath();
+//
+//        System.out.println("Converting " + file_path + " ...");
+//        String output_image_path = "temp.png";
+//        File outputFile = new File(output_image_path);
+//
+//        MelSpectrogram melGram = new MelSpectrogram();
+//        melGram.setOutputFrameWidth(MelSpectrogram.Width);
+//        melGram.setOutputFrameHeight(MelSpectrogram.Height);
+//        BufferedImage image = null;
 //        try
 //        {
-//            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(initialFile);
-//            TarsosDSPAudioInputStream tarsosDSPAudioInputStream = new JVMAudioInputStream(audioInputStream);
-//            AudioDispatcher dispatcher = new AudioDispatcher(tarsosDSPAudioInputStream, 2046, 2046);
-//            dispatcher.run();
+//            image = melGram.convertAudio(f);
 //        }
-//        catch (UnsupportedAudioFileException | IOException e)
+//        catch (UnsupportedAudioFileException | LineUnavailableException e)
 //        {
 //            e.printStackTrace();
 //        }
-        int mNumFrames;
-        int mSampleRate;
-        int mChannels;
+//
+//        assert image != null;
+//        ImageIO.write(image, "png", outputFile);
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        float[] audio = Read.audio("D:/Users/Owen/Final_Year_Project/birdsong/Common_Wood_Pigeon/Common_Wood_Pigeon_0.wav");
+        Sonopy sonopy = new Sonopy(44100, 2048, 1024, 2048, 20);
+        float[][] mels = sonopy.melSpec(audio);
 
-        File sourceFile = new File("D:/Users/Owen/Final_Year_Project/birdsong/Common_Wood_Pigeon/Common_Wood_Pigeon_0.wav");
+        double[][] spectrogram = new double[mels.length][mels[0].length];
 
-        WavFile wavFile = WavFile.openWavFile(sourceFile);
-        mNumFrames = (int) wavFile.getNumFrames();
-        mSampleRate = (int) wavFile.getSampleRate();
-        mChannels = wavFile.getNumChannels();
-
-        float[][] buffer = new float[mChannels][mNumFrames];
-        int frameOffset = 0;
-        int loopCounter = ((mNumFrames * mChannels)/4096) + 1;
-        for (int i = 0; i < loopCounter; i++) {
-            frameOffset = wavFile.readFrames(buffer, mNumFrames, frameOffset);
+        for (int i = 0; i < mels.length; i++)
+        {
+            for (int j = 0; j < mels[0].length; j++)
+                spectrogram[i][j] = mels[i][j];
         }
 
+        double[][] power = ProjectMain.powerToDb(spectrogram);
 
-        DecimalFormat df = new DecimalFormat("#.#####");
-        df.setRoundingMode(RoundingMode.CEILING);
-
-        float [] meanBuffer = new float[mNumFrames];
-        for(int q=0;q<mNumFrames;q++){
-            double frameVal = 0;
-            for(int p=0;p<mChannels;p++){
-                frameVal = frameVal + buffer[p][q];
-            }
-            meanBuffer[q]=Float.parseFloat(df.format(frameVal/mChannels));
-        }
-
-        AudioFeatureExtraction extraction = new AudioFeatureExtraction();
-        float[] mfccInput = extraction.extractMFCCFeatures(meanBuffer);
-
-        int nMFCC = extraction.getN_mfcc();
-
-        int nFFT = mfccInput.length/nMFCC;
-        double [][] mfccValues = new double[nMFCC][nFFT];
-
-        //loop to convert the mfcc values into multi-dimensional array
-        for(int i=0;i<nFFT;i++){
-            int indexCounter = i * nMFCC;
-            int rowIndexValue = i%nFFT;
-            for(int j=0;j<nMFCC;j++){
-                mfccValues[j][rowIndexValue]=mfccInput[indexCounter];
-                indexCounter++;
+        Mat image = new Mat(power.length, power[0].length, CvType.CV_64FC1);
+        for (int row = 0; row < power.length; row++)
+        {
+            for (int col = 0; col < power[0].length; col++)
+            {
+                image.put(row, col, power[row][col]);
             }
         }
-
-
-        //code to take the mean of mfcc values across the rows such that
-        //[nMFCC x nFFT] matrix would be converted into
-        //[nMFCC x 1] dimension - which would act as an input to tflite model
-        float [] meanMFCCValues = new float[nMFCC];
-        for(int p=0;p<nMFCC;p++){
-            double fftValAcrossRow = 0;
-            for(int q=0;q<nFFT;q++){
-                fftValAcrossRow = fftValAcrossRow + mfccValues[p][q];
-            }
-            double fftMeanValAcrossRow = fftValAcrossRow/nFFT;
-            meanMFCCValues[p] = (float) fftMeanValAcrossRow;
-        }
-
-
+        Core.normalize(image, image, 0, 255, Core.NORM_MINMAX);
+        Imgcodecs.imwrite("temp.jpg", image);
 
     }
 }
