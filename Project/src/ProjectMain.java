@@ -65,11 +65,6 @@ public class ProjectMain
                     System.out.println("Making image for" + audioFile.getName());
                     System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
                     float[] audio = Read.audio(audioFile.getPath());
-                    boolean wasDeleted = audioFile.delete();
-                    if(!wasDeleted)
-                    {
-                        throw new FileSystemException("Couldn't delete file");
-                    }
                     Sonopy sonopy = new Sonopy(44100, 256, 128, 256,
                             128);
                     float[][] mels = sonopy.melSpec(audio);
@@ -100,7 +95,19 @@ public class ProjectMain
                         }
                     }
                     Core.normalize(image, image, 0, 255, Core.NORM_MINMAX);
-                    Imgcodecs.imwrite("power_spec.jpg", image);
+                    String parentPath = audioFile.getParentFile().getAbsolutePath();
+                    String filename = parentPath + "\\" + audioFile.getName();
+                    int pos = filename.lastIndexOf(".");
+                    if (pos > 0)
+                    {
+                        filename = filename.substring(0, pos);
+                    }
+                    Imgcodecs.imwrite(filename+".png", image);
+                    boolean wasDeleted = audioFile.delete();
+                    if(!wasDeleted)
+                    {
+                        throw new FileSystemException("Couldn't delete file");
+                    }
 
                 }
             }

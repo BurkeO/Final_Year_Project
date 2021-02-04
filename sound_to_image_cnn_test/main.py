@@ -52,7 +52,7 @@ def main():
     # print(height, width, channels)
 
     ##
-    birdsong_path = Path("birdsong")
+    birdsong_path = Path("java_birdsong")
     for image_path in birdsong_path.glob('**/*.png'):
         img = cv2.imread(str(image_path))
         resized = cv2.resize(img, (32, 32), interpolation=INTER_AREA)
