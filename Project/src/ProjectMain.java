@@ -1,46 +1,116 @@
-import be.tarsos.dsp.AudioDispatcher;
-import be.tarsos.dsp.AudioEvent;
-import be.tarsos.dsp.AudioProcessor;
-import be.tarsos.dsp.io.TarsosDSPAudioFormat;
-import be.tarsos.dsp.io.TarsosDSPAudioInputStream;
-import be.tarsos.dsp.io.UniversalAudioInputStream;
-import be.tarsos.dsp.io.jvm.JVMAudioInputStream;
-
-import javax.imageio.ImageIO;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
-import java.awt.image.BufferedImage;
-import java.io.*;
+import jm.util.Read;
+import me.gommeantilegit.sonopy.Sonopy;
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.imgcodecs.Imgcodecs;
 
 import java.io.File;
 import java.io.IOException;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.FileSystemException;
 
 //import be.tarsos.dsp.mfcc.MFCC;
-import com.jlibrosa.audio.wavFile.WavFile;
-import com.jlibrosa.audio.wavFile.WavFileException;
-import com.jlibrosa.audio.process.AudioFeatureExtraction;
 
-import org.opencv.core.Core;
-import org.opencv.core.CvType;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.tensorflow.Operand;
-import org.tensorflow.op.Scope;
-import org.tensorflow.op.audio.Mfcc;
-
-import jm.util.*;
-import me.gommeantilegit.sonopy.Sonopy;
-
-import org.opencv.core.Mat;
 
 public class ProjectMain
 {
+    private static void splitWavFiles() throws FileSystemException
+    {
+        File dir = new File("birdsong");
+        File[] directoryListing = dir.listFiles();
+        if (directoryListing != null)
+        {
+            for (File child : directoryListing)
+            {
+                File[] audioFilesArray = child.listFiles();
+                assert audioFilesArray != null;
+                for (File audioFile : audioFilesArray)
+                {
+                    System.out.println("Working on " + audioFile.getName());
+                    String parentPath = audioFile.getParentFile().getAbsolutePath();
+                    String filename = parentPath + "\\" + audioFile.getName();
+                    int pos = filename.lastIndexOf(".");
+                    if (pos > 0)
+                    {
+                        filename = filename.substring(0, pos);
+                    }
+                    new ExecCommand("ffmpeg -i " + audioFile.getAbsolutePath() +
+                            " -f segment -segment_time 3 -c copy " + filename + "%03d.wav");
+                    boolean wasDeleted = audioFile.delete();
+                    if (!wasDeleted)
+                    {
+                        throw new FileSystemException("Couldn't delete" + audioFile.toString());
+                    }
+                }
+            }
+        }
+        else
+        {
+            throw new FileSystemException("Not a folder");
+        }
+    }
+
+    private static void generateImages() throws FileSystemException
+    {
+        File dir = new File("birdsong");
+        File[] directoryListing = dir.listFiles();
+        if (directoryListing != null)
+        {
+            for (File child : directoryListing)
+            {
+                File[] audioFilesArray = child.listFiles();
+                assert audioFilesArray != null;
+                for (File audioFile : audioFilesArray)
+                {
+                    System.out.println("Making image for" + audioFile.getName());
+                    System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+                    float[] audio = Read.audio(audioFile.getPath());
+                    boolean wasDeleted = audioFile.delete();
+                    if(!wasDeleted)
+                    {
+                        throw new FileSystemException("Couldn't delete file");
+                    }
+                    Sonopy sonopy = new Sonopy(44100, 256, 128, 256,
+                            128);
+                    float[][] mels = sonopy.melSpec(audio);
+
+                    System.out.println(mels.length + ", " + mels[0].length);
+
+                    double[][] spectrogram = new double[mels.length][mels[0].length];
+
+                    for (int i = 0; i < mels.length; i++)
+                    {
+                        for (int j = 0; j < mels[0].length; j++)
+                            spectrogram[i][j] = mels[i][j];
+                    }
+                    double[] doubleAudio = new double[audio.length];
+                    for (int i = 0; i < doubleAudio.length; i++)
+                    {
+                        doubleAudio[i] = audio[i];
+                    }
+
+                    double[][] power = ProjectMain.powerToDb(spectrogram);
+
+                    Mat image = new Mat(spectrogram.length, spectrogram[0].length, CvType.CV_64FC1);
+                    for (int row = 0; row < spectrogram.length; row++)
+                    {
+                        for (int col = 0; col < spectrogram[0].length; col++)
+                        {
+                            image.put(row, col, spectrogram[row][col]);
+                        }
+                    }
+                    Core.normalize(image, image, 0, 255, Core.NORM_MINMAX);
+                    Imgcodecs.imwrite("power_spec.jpg", image);
+
+                }
+            }
+        }
+        else
+        {
+            throw new FileSystemException("Not a folder");
+        }
+    }
+
     public static double[][] powerToDb(double[][] melS)
     {
         //Convert a power spectrogram (amplitude squared) to decibel (dB) units
@@ -87,7 +157,7 @@ public class ProjectMain
         return Math.log(value) / Math.log(10);
     }
 
-    public static void main(String[] args) throws IOException
+    public static void main(String[] args) throws IOException, InterruptedException
     {
 //        File f = new File("D:/Users/Owen/Final_Year_Project/birdsong/Common_Wood_Pigeon/Common_Wood_Pigeon_0.wav");
 //
@@ -112,31 +182,41 @@ public class ProjectMain
 //
 //        assert image != null;
 //        ImageIO.write(image, "png", outputFile);
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        float[] audio = Read.audio("D:/Users/Owen/Final_Year_Project/birdsong/Common_Wood_Pigeon/Common_Wood_Pigeon_0.wav");
-        Sonopy sonopy = new Sonopy(44100, 2048, 1024, 2048, 20);
-        float[][] mels = sonopy.melSpec(audio);
 
-        double[][] spectrogram = new double[mels.length][mels[0].length];
 
-        for (int i = 0; i < mels.length; i++)
-        {
-            for (int j = 0; j < mels[0].length; j++)
-                spectrogram[i][j] = mels[i][j];
-        }
-
-        double[][] power = ProjectMain.powerToDb(spectrogram);
-
-        Mat image = new Mat(power.length, power[0].length, CvType.CV_64FC1);
-        for (int row = 0; row < power.length; row++)
-        {
-            for (int col = 0; col < power[0].length; col++)
-            {
-                image.put(row, col, power[row][col]);
-            }
-        }
-        Core.normalize(image, image, 0, 255, Core.NORM_MINMAX);
-        Imgcodecs.imwrite("temp.jpg", image);
-
+//        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+//        float[] audio = Read.audio("src/out000.wav");
+//        Sonopy sonopy = new Sonopy(44100, 256, 128, 256, 128);
+//        float[][] mels = sonopy.melSpec(audio);
+//
+//        System.out.println(mels.length + ", " + mels[0].length);
+//
+//        double[][] spectrogram = new double[mels.length][mels[0].length];
+//
+//        for (int i = 0; i < mels.length; i++)
+//        {
+//            for (int j = 0; j < mels[0].length; j++)
+//                spectrogram[i][j] = mels[i][j];
+//        }
+//        double[] doubleAudio = new double[audio.length];
+//        for (int i = 0; i < doubleAudio.length; i++)
+//        {
+//            doubleAudio[i] = audio[i];
+//        }
+//
+//        double[][] power = ProjectMain.powerToDb(spectrogram);
+//
+//        Mat image = new Mat(spectrogram.length, spectrogram[0].length, CvType.CV_64FC1);
+//        for (int row = 0; row < spectrogram.length; row++)
+//        {
+//            for (int col = 0; col < spectrogram[0].length; col++)
+//            {
+//                image.put(row, col, spectrogram[row][col]);
+//            }
+//        }
+//        Core.normalize(image, image, 0, 255, Core.NORM_MINMAX);
+//        Imgcodecs.imwrite("power_spec.jpg", image);
+        splitWavFiles();
+        generateImages();
     }
 }
