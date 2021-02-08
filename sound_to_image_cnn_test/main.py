@@ -52,7 +52,7 @@ def main():
     # print(height, width, channels)
 
     ##
-    birdsong_path = Path("java_birdsong")
+    birdsong_path = Path("ffmpeg_spec_birdsong")
     for image_path in birdsong_path.glob('**/*.png'):
         img = cv2.imread(str(image_path))
         resized = cv2.resize(img, (32, 32), interpolation=INTER_AREA)
@@ -62,7 +62,7 @@ def main():
     batch_size = 32
     img_height = 32
     img_width = 32
-    data_dir = Path("birdsong")
+    data_dir = birdsong_path
 
     train_ds = tf.keras.preprocessing.image_dataset_from_directory(
         data_dir,
@@ -113,6 +113,15 @@ def main():
         validation_data=val_ds,
         epochs=20
     )
+
+    saved_model_dir = 'save/fine_tuning'
+    tf.saved_model.save(model, saved_model_dir)
+
+    converter = tf.lite.TFLiteConverter.from_saved_model(saved_model_dir)
+    tflite_model = converter.convert()
+
+    with open('model.tflite', 'wb') as f:
+        f.write(tflite_model)
 
 
 if __name__ == '__main__':

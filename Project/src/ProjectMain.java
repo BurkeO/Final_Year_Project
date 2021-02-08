@@ -62,39 +62,39 @@ public class ProjectMain
                 assert audioFilesArray != null;
                 for (File audioFile : audioFilesArray)
                 {
-                    System.out.println("Making image for" + audioFile.getName());
-                    System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-                    float[] audio = Read.audio(audioFile.getPath());
-                    Sonopy sonopy = new Sonopy(44100, 256, 128, 256,
-                            128);
-                    float[][] mels = sonopy.melSpec(audio);
-
-                    System.out.println(mels.length + ", " + mels[0].length);
-
-                    double[][] spectrogram = new double[mels.length][mels[0].length];
-
-                    for (int i = 0; i < mels.length; i++)
-                    {
-                        for (int j = 0; j < mels[0].length; j++)
-                            spectrogram[i][j] = mels[i][j];
-                    }
-                    double[] doubleAudio = new double[audio.length];
-                    for (int i = 0; i < doubleAudio.length; i++)
-                    {
-                        doubleAudio[i] = audio[i];
-                    }
-
-                    double[][] power = ProjectMain.powerToDb(spectrogram);
-
-                    Mat image = new Mat(spectrogram.length, spectrogram[0].length, CvType.CV_64FC1);
-                    for (int row = 0; row < spectrogram.length; row++)
-                    {
-                        for (int col = 0; col < spectrogram[0].length; col++)
-                        {
-                            image.put(row, col, spectrogram[row][col]);
-                        }
-                    }
-                    Core.normalize(image, image, 0, 255, Core.NORM_MINMAX);
+                    System.out.println("Making image for " + audioFile.getName());
+//                    System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+//                    float[] audio = Read.audio(audioFile.getPath());
+//                    Sonopy sonopy = new Sonopy(44100, 256, 128, 256,
+//                            128);
+//                    float[][] mels = sonopy.melSpec(audio);
+//
+//                    System.out.println(mels.length + ", " + mels[0].length);
+//
+//                    double[][] spectrogram = new double[mels.length][mels[0].length];
+//
+//                    for (int i = 0; i < mels.length; i++)
+//                    {
+//                        for (int j = 0; j < mels[0].length; j++)
+//                            spectrogram[i][j] = mels[i][j];
+//                    }
+//                    double[] doubleAudio = new double[audio.length];
+//                    for (int i = 0; i < doubleAudio.length; i++)
+//                    {
+//                        doubleAudio[i] = audio[i];
+//                    }
+//
+//                    double[][] power = ProjectMain.powerToDb(spectrogram);
+//
+//                    Mat image = new Mat(spectrogram.length, spectrogram[0].length, CvType.CV_64FC1);
+//                    for (int row = 0; row < spectrogram.length; row++)
+//                    {
+//                        for (int col = 0; col < spectrogram[0].length; col++)
+//                        {
+//                            image.put(row, col, spectrogram[row][col]);
+//                        }
+//                    }
+//                    Core.normalize(image, image, 0, 255, Core.NORM_MINMAX);
                     String parentPath = audioFile.getParentFile().getAbsolutePath();
                     String filename = parentPath + "\\" + audioFile.getName();
                     int pos = filename.lastIndexOf(".");
@@ -102,7 +102,10 @@ public class ProjectMain
                     {
                         filename = filename.substring(0, pos);
                     }
-                    Imgcodecs.imwrite(filename+".png", image);
+                    //Imgcodecs.imwrite(filename+".png", image);
+                    new ExecCommand("ffmpeg -i " + audioFile.getAbsolutePath() +
+                            " -lavfi showspectrumpic " + filename + ".png");
+                    //
                     boolean wasDeleted = audioFile.delete();
                     if(!wasDeleted)
                     {
