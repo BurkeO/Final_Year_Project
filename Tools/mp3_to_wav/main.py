@@ -13,7 +13,7 @@ def main(args: argparse.Namespace):
         print(f'Converting {src_mp3_absolute}')
         species = str(mp3_path).split('\\')[-2]
         dst_wav_absolute = str(output_folder_path) + "\\" + species + "\\" + mp3_path.stem + ".wav"
-        Path(dst_wav_absolute).mkdir(parents=True, exist_ok=True)
+        Path(dst_wav_absolute).parent.mkdir(parents=True, exist_ok=True)
         sound = AudioSegment.from_mp3(src_mp3_absolute)
         sound.export(dst_wav_absolute, format="wav")
 

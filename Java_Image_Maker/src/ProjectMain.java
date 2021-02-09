@@ -14,21 +14,24 @@ import java.nio.file.FileSystemException;
 
 public class ProjectMain
 {
-    private static void splitWavFiles() throws FileSystemException
+    private static void splitWavFiles(File wavFileDirectory, File outputDirectory) throws FileSystemException
     {
-        File dir = new File("birdsong");
-        File[] directoryListing = dir.listFiles();
-        if (directoryListing != null)
+        File[] speciesDirectoryArray = wavFileDirectory.listFiles();
+        if (speciesDirectoryArray != null)
         {
-            for (File child : directoryListing)
+            for (File speciesDirectory : speciesDirectoryArray)
             {
-                File[] audioFilesArray = child.listFiles();
+                File[] audioFilesArray = speciesDirectory.listFiles();
                 assert audioFilesArray != null;
                 for (File audioFile : audioFilesArray)
                 {
                     System.out.println("Working on " + audioFile.getName());
-                    String parentPath = audioFile.getParentFile().getAbsolutePath();
-                    String filename = parentPath + "\\" + audioFile.getName();
+                    File speciesOutputDirectory = new File(outputDirectory.getAbsolutePath() + "\\" + speciesDirectory.getName());
+                    if(speciesOutputDirectory.exists() == false)
+                    {
+                        speciesOutputDirectory.mkdirs();
+                    }
+                    String filename = speciesOutputDirectory.getAbsolutePath() + "\\" + audioFile.getName();
                     int pos = filename.lastIndexOf(".");
                     if (pos > 0)
                     {
@@ -36,11 +39,11 @@ public class ProjectMain
                     }
                     new ExecCommand("ffmpeg -i " + audioFile.getAbsolutePath() +
                             " -f segment -segment_time 3 -c copy " + filename + "%03d.wav");
-                    boolean wasDeleted = audioFile.delete();
-                    if (!wasDeleted)
-                    {
-                        throw new FileSystemException("Couldn't delete" + audioFile.toString());
-                    }
+//                    boolean wasDeleted = audioFile.delete();
+//                    if (!wasDeleted)
+//                    {
+//                        throw new FileSystemException("Couldn't delete" + audioFile.toString());
+//                    }
                 }
             }
         }
@@ -226,7 +229,8 @@ public class ProjectMain
 //        }
 //        Core.normalize(image, image, 0, 255, Core.NORM_MINMAX);
 //        Imgcodecs.imwrite("power_spec.jpg", image);
-        splitWavFiles();
-        generateImages();
+        splitWavFiles(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Recordings_Full_Wav"),
+                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Recordings_Split_Wavs"));
+        //generateImages();
     }
 }
