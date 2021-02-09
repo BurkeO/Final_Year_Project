@@ -9,8 +9,6 @@ from matplotlib import pyplot as plt
 import numpy as np
 from tensorflow.keras.applications import vgg16
 
-NUMBER_OF_IMAGES_PER_CLASS = 20
-
 
 def main():
     # species_to_count_dict = {}
@@ -51,18 +49,19 @@ def main():
     # height, width, channels = img.shape
     # print(height, width, channels)
 
-    ##
-    birdsong_path = Path("ffmpeg_spec_birdsong")
+    birdsong_path = Path("D:/Users/Owen/Final_Year_Project/Dev_Images")
     # for image_path in birdsong_path.glob('**/*.png'):
     #     img = cv2.imread(str(image_path))
     #     resized = cv2.resize(img, (32, 32), interpolation=INTER_AREA)
-    #     cv2.imwrite(str(image_path), resized)
-    # #
+    #     species = str(image_path).split('\\')[-2]
+    #     Path(f"output/{species}").mkdir(parents=True, exist_ok=True)
+    #     output_file = f"output/{species}/{image_path.name}"
+    #     cv2.imwrite(output_file, resized)
 
     batch_size = 32
     img_height = 32
     img_width = 32
-    data_dir = birdsong_path
+    data_dir = "output"
 
     train_ds = tf.keras.preprocessing.image_dataset_from_directory(
         data_dir,
@@ -100,7 +99,8 @@ def main():
         layers.MaxPooling2D(),
         layers.Flatten(),
         layers.Dense(128, activation='relu'),
-        layers.Dense(num_classes)
+        # layers.Dense(num_classes)
+        layers.Dense(num_classes, activation="softmax")
     ])
 
     model.compile(
@@ -111,7 +111,7 @@ def main():
     model.fit(
         train_ds,
         validation_data=val_ds,
-        epochs=20
+        epochs=50
     )
 
     saved_model_dir = 'save/fine_tuning'
