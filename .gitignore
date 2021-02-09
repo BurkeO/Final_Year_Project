@@ -132,7 +132,10 @@ dmypy.json
 
 *.pyc
 .DS_Store
-mp3
+*.mp3
+*.png
+metadata.json
+*.wav
 *.cnf
 docker
 plots
