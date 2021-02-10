@@ -11,52 +11,27 @@ from tensorflow.keras.applications import vgg16
 
 
 def main():
-    # species_to_count_dict = {}
-    # birdsong_path = Path("birdsong")
-    # for train_wav_path in ["D:/Users/Owen/Final_Year_Project/birdsong/Common_Wood_Pigeon/Common_Wood_Pigeon_0.wav"]:  # birdsong_path.glob('**/*.wav'):
-    #     audio, sr = librosa.load(train_wav_path, librosa.get_samplerate(train_wav_path))
-    #     # with open('audio.txt', 'w') as f:
-    #     #     for item in audio:
-    #     #         f.write(f'{item}, ')
-    #     spectrogram = librosa.feature.melspectrogram(y=audio, sr=sr)
-    #     db = librosa.power_to_db(spectrogram, ref=np.max)
-    #     librosa.display.specshow(db, fmax=10000, y_axis='mel', x_axis='time')
-    #     plt.savefig('test.png')
-    #
-    #     # species = str(train_wav_path).split('//')[1]
-    #     # if species in species_to_count_dict and species_to_count_dict[species] > NUMBER_OF_IMAGES_PER_CLASS:
-    #     #     continue
-    #     # print(f'making images for {train_wav_path.name}')
-    #     test_stream = librosa.stream(train_wav_path, block_length=128, frame_length=2048, hop_length=1024,
-    #                                  fill_value=0.0)
-    # block_list = [block for block in test_stream][:-1]
-    # for index, test_block in enumerate(block_list):
-    #     if species not in species_to_count_dict:
-    #         species_to_count_dict[species] = 0
-    #     species_to_count_dict[species] += 1
-    #     spectrogram = librosa.feature.melspectrogram(y=test_block, sr=librosa.get_samplerate(train_wav_path))
-    #     librosa.display.specshow(librosa.power_to_db(spectrogram, ref=np.max), fmax=10000, y_axis='mel',
-    #                              x_axis='time')
-    #     plt.savefig(f'{train_wav_path.parent}/{train_wav_path.name[:-4]}_window_{index}.png')
-    #
-    #     if species_to_count_dict[species] > NUMBER_OF_IMAGES_PER_CLASS:
-    #         break
+    birdsong_path = Path("D:/Users/Owen/Final_Year_Project/Dev_Recordings_Split_Wavs")
+    for train_wav_path in birdsong_path.glob('**/*.wav'):
+        audio, sr = librosa.load(train_wav_path, librosa.get_samplerate(train_wav_path))
+        spectrogram = librosa.feature.melspectrogram(y=audio, sr=sr)
+        db = librosa.power_to_db(spectrogram, ref=np.max)
+        librosa.display.specshow(db, fmax=10000, y_axis='mel', x_axis='time')
+        species = str(train_wav_path).split('\\')[-2]
+        print(f'Making melspec for {train_wav_path.name}')
+        output_path = Path(f'../Dev_Images_Melspec/{species}/{train_wav_path.stem}.png')
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        plt.savefig(str(output_path))
 
-    # img = cv2.imread("birdsong/Common_Blackbird/Common_Blackbird_0_window_0.png")
-    # height, width, channels = img.shape
-    # print(height, width, channels)
-    # img = cv2.imread("birdsong/Arctic_Warbler/Arctic_Warbler_0_window_0.png")
-    # height, width, channels = img.shape
-    # print(height, width, channels)
-
-    birdsong_path = Path("D:/Users/Owen/Final_Year_Project/Dev_Images")
-    # for image_path in birdsong_path.glob('**/*.png'):
-    #     img = cv2.imread(str(image_path))
-    #     resized = cv2.resize(img, (32, 32), interpolation=INTER_AREA)
-    #     species = str(image_path).split('\\')[-2]
-    #     Path(f"output/{species}").mkdir(parents=True, exist_ok=True)
-    #     output_file = f"output/{species}/{image_path.name}"
-    #     cv2.imwrite(output_file, resized)
+    images_dir_path = Path("D:/Users/Owen/Final_Year_Project/Dev_Images_Melspec")
+    for image_path in images_dir_path.glob('**/*.png'):
+        img = cv2.imread(str(image_path))
+        resized = cv2.resize(img, (32, 32), interpolation=INTER_AREA)
+        species = str(image_path).split('\\')[-2]
+        Path(f"output/{species}").mkdir(parents=True, exist_ok=True)
+        output_file = f"output/{species}/{image_path.name}"
+        print(f'Saving to {output_file}')
+        cv2.imwrite(output_file, resized)
 
     batch_size = 32
     img_height = 32
@@ -96,11 +71,11 @@ def main():
         layers.Conv2D(32, 3, activation='relu'),
         layers.MaxPooling2D(),
         layers.Conv2D(32, 3, activation='relu'),
-        layers.MaxPooling2D(),
+        # layers.MaxPooling2D(),
         layers.Flatten(),
         layers.Dense(128, activation='relu'),
-        # layers.Dense(num_classes)
-        layers.Dense(num_classes, activation="softmax")
+        layers.Dense(num_classes)
+        # layers.Dense(num_classes, activation="softmax")
     ])
 
     model.compile(
