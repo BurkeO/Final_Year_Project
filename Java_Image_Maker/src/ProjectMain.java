@@ -1,3 +1,8 @@
+import be.tarsos.dsp.AudioDispatcher;
+import be.tarsos.dsp.AudioEvent;
+import be.tarsos.dsp.AudioProcessor;
+import be.tarsos.dsp.io.TarsosDSPAudioFormat;
+import be.tarsos.dsp.io.UniversalAudioInputStream;
 import jm.util.Read;
 import me.gommeantilegit.sonopy.Sonopy;
 import org.opencv.core.Core;
@@ -5,11 +10,24 @@ import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
 
+import javax.imageio.ImageIO;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.FileSystemException;
 
-//import be.tarsos.dsp.mfcc.MFCC;
+import org.tensorflow.Operand;
+import org.tensorflow.Output;
+import org.tensorflow.op.Scope;
+import org.tensorflow.op.audio.Mfcc;
+import org.tensorflow.op.audio.DecodeWav;
+import org.tensorflow.op.io.ReadFile;
+
+import be.tarsos.dsp.mfcc.MFCC;
 
 
 public class ProjectMain
@@ -167,9 +185,9 @@ public class ProjectMain
         return Math.log(value) / Math.log(10);
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException
+    public static void main(String[] args) throws IOException, InterruptedException, UnsupportedAudioFileException
     {
-//        File f = new File("D:/Users/Owen/Final_Year_Project/birdsong/Common_Wood_Pigeon/Common_Wood_Pigeon_0.wav");
+//        File f = new File("D:/Users/Owen/Final_Year_Project/Dev_Recordings_Split_Wavs/Common_Wood_Pigeon/Common_Wood_Pigeon_0000.wav");
 //
 //        String file_path = f.getAbsolutePath();
 //
@@ -195,12 +213,12 @@ public class ProjectMain
 
 
 //        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-//        float[] audio = Read.audio("src/out000.wav");
-//        Sonopy sonopy = new Sonopy(44100, 256, 128, 256, 128);
+//        float[] audio = Read.audio("D:/Users/Owen/Final_Year_Project/Dev_Recordings_Split_Wavs/Common_Wood_Pigeon/Common_Wood_Pigeon_0000.wav");
+//        Sonopy sonopy = new Sonopy(44100, 1024, 512, 256, 128);
 //        float[][] mels = sonopy.melSpec(audio);
 //
 //        System.out.println(mels.length + ", " + mels[0].length);
-//
+
 //        double[][] spectrogram = new double[mels.length][mels[0].length];
 //
 //        for (int i = 0; i < mels.length; i++)
@@ -215,20 +233,54 @@ public class ProjectMain
 //        }
 //
 //        double[][] power = ProjectMain.powerToDb(spectrogram);
-//
-//        Mat image = new Mat(spectrogram.length, spectrogram[0].length, CvType.CV_64FC1);
+
+//        Mat imageMat = new Mat(spectrogram.length, spectrogram[0].length, CvType.CV_64FC1);
 //        for (int row = 0; row < spectrogram.length; row++)
 //        {
 //            for (int col = 0; col < spectrogram[0].length; col++)
 //            {
-//                image.put(row, col, spectrogram[row][col]);
+//                imageMat.put(row, col, spectrogram[row][col]);
 //            }
 //        }
-//        Core.normalize(image, image, 0, 255, Core.NORM_MINMAX);
-//        Imgcodecs.imwrite("power_spec.jpg", image);
+//        Core.normalize(imageMat, imageMat, 0, 255, Core.NORM_MINMAX);
+//        Imgcodecs.imwrite("power_spec.jpg", imageMat);
+//        Mat imageMat = new Mat(mels.length, mels[0].length, CvType.CV_64FC1);
+//        for (int row = 0; row < mels.length; row++)
+//        {
+//            for (int col = 0; col < mels[0].length; col++)
+//            {
+//                imageMat.put(row, col, mels[row][col]);
+//            }
+//        }
+//        Core.normalize(imageMat, imageMat, 0, 255, Core.NORM_MINMAX);
+//        Imgcodecs.imwrite("mels.jpg", imageMat);
+//        int sampleRate = 44100;
+//        int bufferSize = 1024;
+//        int bufferOverlap = 128;
+//        InputStream inStream = new FileInputStream("D:/Users/Owen/Final_Year_Project/Dev_Recordings_Split_Wavs/Common_Wood_Pigeon/Common_Wood_Pigeon_0000.wav");
+//        AudioDispatcher dispatcher = new AudioDispatcher(new UniversalAudioInputStream(inStream, new TarsosDSPAudioFormat(sampleRate, bufferSize, 1, true, false)), bufferSize, bufferOverlap);
+//
+//        final MFCC mfcc = new MFCC(bufferSize, sampleRate, 40, 128, 0, 10000);
+//        dispatcher.addAudioProcessor(mfcc);
+//        dispatcher.addAudioProcessor(new AudioProcessor() {
+//
+//            @Override
+//            public void processingFinished() {
+//            }
+//
+//            @Override
+//            public boolean process(AudioEvent audioEvent) {
+//                return true;
+//            }
+//        });
+//        dispatcher.run();
+//        float[] mfccArray = mfcc.getMFCC();
+//        int i = 0;
+
+        int i = 0;
 //        splitWavFiles(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Recordings_Full_Wav"),
 //                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Recordings_Split_Wavs"));
-        generateImages(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Recordings_Split_Wavs"),
-                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Images"));
+//        generateImages(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Recordings_Split_Wavs"),
+//                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Images"));
     }
 }
