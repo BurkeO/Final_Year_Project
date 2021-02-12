@@ -50,13 +50,34 @@ public class ProjectMain
                         speciesOutputDirectory.mkdirs();
                     }
                     String filename = speciesOutputDirectory.getAbsolutePath() + "\\" + audioFile.getName();
+                    String normFilename = filename+"_norm";
+                    String passFilename = normFilename + "_pass";
+                    String noiseFilename = passFilename + "_afftdn";
+                    String silenceFilename = noiseFilename + "_silence";
                     int pos = filename.lastIndexOf(".");
                     if (pos > 0)
                     {
                         filename = filename.substring(0, pos);
                     }
                     new ExecCommand("ffmpeg -i " + audioFile.getAbsolutePath() +
+                            " -af loudnorm " + normFilename + ".wav");
+                    //
+                    new ExecCommand("ffmpeg -i " + normFilename + ".wav" +
+                            " -af \"highpass=f=22, lowpass=f=9000\" " + passFilename + ".wav");
+                    //
+                    new ExecCommand("ffmpeg -i " + passFilename + ".wav" +
+                            " -af afftdn " + noiseFilename + ".wav");
+                    //
+                    new ExecCommand("ffmpeg -i " + noiseFilename + ".wav" +
+                            " -af silenceremove=stop_periods=-1:stop_duration=1:stop_threshold=-46dB " + silenceFilename + ".wav");
+                    //
+                    new ExecCommand("ffmpeg -i " + silenceFilename + ".wav" +
                             " -f segment -segment_time 3 -c copy " + filename + "%03d.wav");
+                    //
+                    new File(normFilename + ".wav").delete();
+                    new File(passFilename + ".wav").delete();
+                    new File(noiseFilename + ".wav").delete();
+                    new File(silenceFilename + ".wav").delete();
 //                    boolean wasDeleted = audioFile.delete();
 //                    if (!wasDeleted)
 //                    {
@@ -282,9 +303,9 @@ public class ProjectMain
 //        int i = 0;
 
         int i = 0;
-//        splitWavFiles(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Larger_Song_Set"),
-//                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Larger_Split_wavs"));
-        generateImages(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Larger_Split_wavs"),
-                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Larger_Images"));
+//        splitWavFiles(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test"),
+//                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"));
+        generateImages(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"),
+                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Images"));
     }
 }
