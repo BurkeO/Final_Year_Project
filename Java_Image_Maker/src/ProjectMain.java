@@ -82,7 +82,6 @@ public class ProjectMain
                 assert audioFilesArray != null;
                 for (File audioFile : audioFilesArray)
                 {
-                    System.out.println("Making image for " + audioFile.getName());
 //                    System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 //                    float[] audio = Read.audio(audioFile.getPath());
 //                    Sonopy sonopy = new Sonopy(44100, 256, 128, 256,
@@ -127,6 +126,11 @@ public class ProjectMain
                         filename = filename.substring(0, pos);
                     }
                     //Imgcodecs.imwrite(filename+".png", image);
+                    //to start from left off
+                    if(new File(filename+".png").exists())
+                        continue;
+                    //
+                    System.out.println("Making image for " + audioFile.getName());
                     new ExecCommand("ffmpeg -i " + audioFile.getAbsolutePath() +
                             " -lavfi showspectrumpic " + filename + ".png");
                     //
@@ -278,9 +282,9 @@ public class ProjectMain
 //        int i = 0;
 
         int i = 0;
-//        splitWavFiles(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Recordings_Full_Wav"),
-//                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Recordings_Split_Wavs"));
-//        generateImages(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Recordings_Split_Wavs"),
-//                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Images"));
+//        splitWavFiles(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Larger_Song_Set"),
+//                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Larger_Split_wavs"));
+        generateImages(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Larger_Split_wavs"),
+                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Larger_Images"));
     }
 }
