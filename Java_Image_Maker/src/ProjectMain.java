@@ -61,7 +61,7 @@ public class ProjectMain
                     }
                     new ExecCommand("ffmpeg -i " + audioFile.getAbsolutePath() +
                             " -af loudnorm " + normFilename + ".wav");
-                    //
+                    //TODO figure this one out, doesnt seem to do much
                     new ExecCommand("ffmpeg -i " + normFilename + ".wav" +
                             " -af \"highpass=f=22, lowpass=f=9000\" " + passFilename + ".wav");
                     //
@@ -153,8 +153,8 @@ public class ProjectMain
                     //
                     System.out.println("Making image for " + audioFile.getName());
                     new ExecCommand("ffmpeg -i " + audioFile.getAbsolutePath() +
-                            " -lavfi showspectrumpic " + filename + ".png");
-                    //
+                            " -lavfi showspectrumpic=s=1920x960:stop=10000 " + filename + ".png");
+                    //https://www.wearethefirehouse.com/aspect-ratio-cheat-sheet
                 }
             }
         }
