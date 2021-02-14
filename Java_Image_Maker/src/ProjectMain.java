@@ -20,6 +20,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.FileSystemException;
+import java.util.Arrays;
+import java.util.Objects;
 
 import org.tensorflow.Operand;
 import org.tensorflow.Output;
@@ -43,60 +45,77 @@ public class ProjectMain
     private static void splitWavFiles(File wavFileDirectory, File outputDirectory) throws FileSystemException
     {
         File[] speciesDirectoryArray = wavFileDirectory.listFiles();
-        if (speciesDirectoryArray != null)
+        assert speciesDirectoryArray != null;
+        File speciesOutputDirectory = null;
+        int minCount = Integer.MAX_VALUE;
+        for (int i = 0; i < speciesDirectoryArray.length; i++)
         {
-            for (File speciesDirectory : speciesDirectoryArray)
+            File speciesDirectory = speciesDirectoryArray[i];
+            File[] audioFilesArray = speciesDirectory.listFiles();
+            assert audioFilesArray != null;
+            int count = 0;
+            for (File audioFile : audioFilesArray)
             {
-                File[] audioFilesArray = speciesDirectory.listFiles();
-                assert audioFilesArray != null;
-                for (File audioFile : audioFilesArray)
+                if(count > minCount)
+                    break;
+                System.out.println("Working on " + audioFile.getName());
+                speciesOutputDirectory = new File(outputDirectory.getAbsolutePath() + "\\" + speciesDirectory.getName());
+                if (!speciesOutputDirectory.exists())
                 {
-                    System.out.println("Working on " + audioFile.getName());
-                    File speciesOutputDirectory = new File(outputDirectory.getAbsolutePath() + "\\" + speciesDirectory.getName());
-                    if(speciesOutputDirectory.exists() == false)
-                    {
-                        speciesOutputDirectory.mkdirs();
-                    }
-                    String filename = speciesOutputDirectory.getAbsolutePath() + "\\" + audioFile.getName();
-                    String normFilename = filename+"_norm";
-                    String passFilename = normFilename + "_pass";
-                    String noiseFilename = passFilename + "_afftdn";
-                    String silenceFilename = noiseFilename + "_silence";
-                    int pos = filename.lastIndexOf(".");
-                    if (pos > 0)
-                    {
-                        filename = filename.substring(0, pos);
-                    }
-                    new ExecCommand("ffmpeg -i " + audioFile.getAbsolutePath() +
-                            " -af loudnorm " + normFilename + ".wav");
-                    //TODO figure this one out, doesnt seem to do much
-                    new ExecCommand("ffmpeg -i " + normFilename + ".wav" +
-                            " -af \"highpass=f=22, lowpass=f=9000\" " + passFilename + ".wav");
-                    //
-                    new ExecCommand("ffmpeg -i " + passFilename + ".wav" +
-                            " -af afftdn " + noiseFilename + ".wav");
-                    //
-                    new ExecCommand("ffmpeg -i " + noiseFilename + ".wav" +
-                            " -af silenceremove=stop_periods=-1:stop_duration=1:stop_threshold=-46dB " + silenceFilename + ".wav");
-                    //
-                    new ExecCommand("ffmpeg -i " + silenceFilename + ".wav" +
-                            " -f segment -segment_time 3 -c copy " + filename + "%03d.wav");
-                    //
-                    new File(normFilename + ".wav").delete();
-                    new File(passFilename + ".wav").delete();
-                    new File(noiseFilename + ".wav").delete();
-                    new File(silenceFilename + ".wav").delete();
+                    speciesOutputDirectory.mkdirs();
+                }
+                String filename = speciesOutputDirectory.getAbsolutePath() + "\\" + audioFile.getName();
+                String normFilename = filename + "_norm";
+                String passFilename = normFilename + "_pass";
+                String noiseFilename = passFilename + "_afftdn";
+                String silenceFilename = noiseFilename + "_silence";
+                int pos = filename.lastIndexOf(".");
+                if (pos > 0)
+                {
+                    filename = filename.substring(0, pos);
+                }
+                new ExecCommand("ffmpeg -i " + audioFile.getAbsolutePath() +
+                        " -af loudnorm " + normFilename + ".wav");
+                //TODO figure this one out, doesnt seem to do much
+                new ExecCommand("ffmpeg -i " + normFilename + ".wav" +
+                        " -af \"highpass=f=22, lowpass=f=9000\" " + passFilename + ".wav");
+                //
+                new ExecCommand("ffmpeg -i " + passFilename + ".wav" +
+                        " -af afftdn " + noiseFilename + ".wav");
+                //
+                new ExecCommand("ffmpeg -i " + noiseFilename + ".wav" +
+                        " -af silenceremove=stop_periods=-1:stop_duration=1:stop_threshold=-46dB " + silenceFilename + ".wav");
+                //
+                new ExecCommand("ffmpeg -i " + silenceFilename + ".wav" +
+                        " -f segment -segment_time 3 -c copy " + filename + "%03d.wav");
+                //
+                boolean normDeleted = new File(normFilename + ".wav").delete();
+                boolean passDeleted = new File(passFilename + ".wav").delete();
+                boolean noiseDeleted = new File(noiseFilename + ".wav").delete();
+                boolean silenceDeleted = new File(silenceFilename + ".wav").delete();
+                //
+                if(!normDeleted || !passDeleted || !noiseDeleted || !silenceDeleted)
+                    throw new FileSystemException("Failed to deleted file");
+                count =  speciesOutputDirectory.listFiles().length;
 //                    boolean wasDeleted = audioFile.delete();
 //                    if (!wasDeleted)
 //                    {
 //                        throw new FileSystemException("Couldn't delete" + audioFile.toString());
 //                    }
-                }
+            }
+            if(i == 0 || count < minCount)
+            {
+                minCount = count;
             }
         }
-        else
+        for(File speciesOutputFile : speciesOutputDirectory.getParentFile().listFiles())
         {
-            throw new FileSystemException("Not a folder");
+            File[] wavFiles = speciesOutputFile.listFiles();
+            int numberToDelete = wavFiles.length - minCount;
+            for(int i = 0; i < numberToDelete; i++)
+            {
+                wavFiles[i].delete();
+            }
         }
     }
 
@@ -163,11 +182,15 @@ public class ProjectMain
                     new ExecCommand("ffmpeg -i " + audioFile.getAbsolutePath() +
                             " -lavfi showspectrumpic=s=600x960:stop=10000 " + filename + ".png");
                     //https://www.wearethefirehouse.com/aspect-ratio-cheat-sheet
-//                    Mat img = Imgcodecs.imread(filename+".png", Imgcodecs.IMREAD_COLOR);
-//                    Rect crop = new Rect(116, 64, img.width()-(116*2), img.height()-(64*2));
-//                    Mat croppedImage = new Mat(img, crop);
-//                    new File(filename+".png").delete();
-//                    imwrite(filename+"_cropped.png", croppedImage);
+                    Mat img = Imgcodecs.imread(filename+".png", Imgcodecs.IMREAD_COLOR);
+                    int borderWidth = 156;
+                    int borderHeigth = 60;
+                    Rect crop = new Rect(borderWidth, borderHeigth, img.width()-(borderWidth*2), img.height()-(borderHeigth*2));
+                    Mat croppedImage = new Mat(img, crop);
+                    //new File(filename+".png").delete();
+                    imwrite(filename+"_cropped.png", croppedImage);
+                    //TODO remove
+                    break;
                 }
             }
         }
@@ -316,9 +339,9 @@ public class ProjectMain
 //        int i = 0;
 
         int i = 0;
-//        splitWavFiles(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Recordings_Full_Wav"),
-//                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Recordings_Split_Wavs"));
-        generateImages(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Recordings_Split_Wavs"),
-                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Images"));
+        splitWavFiles(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test"),
+                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"));
+//        generateImages(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"),
+//                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Images"));
     }
 }
