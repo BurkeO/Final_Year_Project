@@ -187,10 +187,8 @@ public class ProjectMain
                     int borderHeigth = 60;
                     Rect crop = new Rect(borderWidth, borderHeigth, img.width()-(borderWidth*2), img.height()-(borderHeigth*2));
                     Mat croppedImage = new Mat(img, crop);
-                    //new File(filename+".png").delete();
-                    imwrite(filename+"_cropped.png", croppedImage);
-                    //TODO remove
-                    break;
+                    new File(filename+".png").delete();
+                    imwrite(filename+".png", croppedImage);
                 }
             }
         }
@@ -339,9 +337,9 @@ public class ProjectMain
 //        int i = 0;
 
         int i = 0;
-        splitWavFiles(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test"),
-                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"));
-//        generateImages(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"),
-//                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Images"));
+//        splitWavFiles(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test"),
+//                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"));
+        generateImages(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"),
+                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Images"));
     }
 }
