@@ -8,6 +8,7 @@ import me.gommeantilegit.sonopy.Sonopy;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.core.Rect;
 import org.opencv.imgcodecs.Imgcodecs;
 
 import javax.imageio.ImageIO;
@@ -29,9 +30,16 @@ import org.tensorflow.op.io.ReadFile;
 
 import be.tarsos.dsp.mfcc.MFCC;
 
+import static org.opencv.imgcodecs.Imgcodecs.imread;
+import static org.opencv.imgcodecs.Imgcodecs.imwrite;
+
 
 public class ProjectMain
 {
+    static{
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+    }
+
     private static void splitWavFiles(File wavFileDirectory, File outputDirectory) throws FileSystemException
     {
         File[] speciesDirectoryArray = wavFileDirectory.listFiles();
@@ -136,7 +144,7 @@ public class ProjectMain
 //                    }
 //                    Core.normalize(image, image, 0, 255, Core.NORM_MINMAX);
                     File speciesOutputDirectory = new File(outputDirectory.getAbsolutePath() + "\\" + speciesDirectory.getName());
-                    if(speciesOutputDirectory.exists() == false)
+                    if(!speciesOutputDirectory.exists())
                     {
                         speciesOutputDirectory.mkdirs();
                     }
@@ -153,8 +161,13 @@ public class ProjectMain
                     //
                     System.out.println("Making image for " + audioFile.getName());
                     new ExecCommand("ffmpeg -i " + audioFile.getAbsolutePath() +
-                            " -lavfi showspectrumpic=s=1920x960:stop=10000 " + filename + ".png");
+                            " -lavfi showspectrumpic=s=600x960:stop=10000 " + filename + ".png");
                     //https://www.wearethefirehouse.com/aspect-ratio-cheat-sheet
+//                    Mat img = Imgcodecs.imread(filename+".png", Imgcodecs.IMREAD_COLOR);
+//                    Rect crop = new Rect(116, 64, img.width()-(116*2), img.height()-(64*2));
+//                    Mat croppedImage = new Mat(img, crop);
+//                    new File(filename+".png").delete();
+//                    imwrite(filename+"_cropped.png", croppedImage);
                 }
             }
         }
@@ -303,9 +316,9 @@ public class ProjectMain
 //        int i = 0;
 
         int i = 0;
-//        splitWavFiles(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test"),
-//                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"));
-        generateImages(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"),
-                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Images"));
+//        splitWavFiles(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Recordings_Full_Wav"),
+//                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Recordings_Split_Wavs"));
+        generateImages(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Recordings_Split_Wavs"),
+                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Images"));
     }
 }
