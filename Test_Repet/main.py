@@ -8,7 +8,7 @@ import winsound
 def main():
     # Import modules
 
-    wav_file = r"D:\Users\Owen\Final_Year_Project\recordings\Ireland\American_Yellow_Warbler\559011\XC559011-4A63562C-F600-49E7-AF6A-9CA9B2392737.wav"
+    wav_file = r"D:\Users\Owen\Final_Year_Project\Dev_Test\Northern_Raven\Northern_Raven_4.wav"
 
     # Audio signal (normalized) and sample rate in Hz
     sample_rate, audio_signal = scipy.io.wavfile.read(wav_file)

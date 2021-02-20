@@ -1,16 +1,29 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import nussl
+import matplotlib.pyplot as plt
+import time
 
 
-# Press the green button in the gutter to run the script.
+def main():
+    start_time = time.time()
+
+    audio_path = 'Northern_Raven_4.wav'
+    audio_signal = nussl.AudioSignal(audio_path)
+    separator = nussl.separation.primitive.Repet(
+        audio_signal, mask_type='binary')
+    estimates = separator()
+
+    plt.figure(figsize=(10, 6))
+    plt.subplot(211)
+    nussl.utils.visualize_sources_as_masks({
+        'Background': estimates[0], 'Foreground': estimates[1]}, y_axis='mel', alpha_amount=2.0)
+
+    plt.subplot(212)
+    nussl.utils.visualize_sources_as_waveform({
+        'Background': estimates[0], 'Foreground': estimates[1]},
+        show_legend=False)
+    plt.show()
+    nussl.play_utils.multitrack(estimates, ['Background', 'Foreground'])
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
