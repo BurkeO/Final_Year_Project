@@ -87,13 +87,12 @@ def matches_dtw(pos, D, stepsize=2):
     return matches
 
 
-def compute_plot_matching_function_DTW(fn_wav_x, fn_wav_y, ell=21, d=5, step_size=2, tau=0.2, num=5,
+def compute_plot_matching_function_DTW(fn_wav_x, Y, ell=21, d=5, step_size=2, tau=0.2, num=5,
                                        y_lim=None):
     if y_lim is None:
         y_lim = [0, 0.35]
     color_ann = {'Theme': [0, 0, 1, 0.1], 'Match': [0, 0, 1, 0.2]}
     X, N, Fs_X, x_duration = compute_cens_from_file(fn_wav_x, ell=ell, d=d)
-    Y, M, Fs_Y, y_duration = compute_cens_from_file(fn_wav_y, ell=ell, d=d)
     Delta, C, D = compute_matching_function_dtw(X, Y, step_size=step_size)
     pos = libfmp.c7.mininma_from_matching_function(Delta, rho=2 * N // 3, tau=tau, num=num)
     matches = matches_dtw(pos, D, stepsize=step_size)
@@ -117,10 +116,11 @@ def compute_plot_matching_function_DTW(fn_wav_x, fn_wav_y, ell=21, d=5, step_siz
 
 
 def main():
-    data_dir = "D:/Users/Owen/Final_Year_Project/Dev_Test"
+    # data_dir = "D:/Users/Owen/Final_Year_Project/Dev_Test"
+    data_dir = "D:/Users/Owen/Final_Year_Project/Dev_Test_10_min_split"
     # data_dir = "D:/Users/Owen/Final_Year_Project/Dev_Test_Split_wavs"
     parent_list = os.listdir(f'{data_dir}/Common_Chiffchaff')
-    number_for_each = 10
+    number_for_each = 100
     chiffchaff_list = parent_list[:number_for_each]
     for i in range(len(chiffchaff_list)):
         chiffchaff_list[i] = f'{data_dir}/Common_Chiffchaff/{chiffchaff_list[i]}'
@@ -134,17 +134,23 @@ def main():
 
     test_percentage = 0.2
     wav_test_list = fn_wav_all[:int(len(fn_wav_all) * test_percentage)]
-    wav_train = fn_wav_all[int(len(fn_wav_all) * test_percentage):]
+    wav_train_list = fn_wav_all[int(len(fn_wav_all) * test_percentage):]
 
     number_correct = 0
 
+    training_file_cens_list = []
+    for file in wav_train_list:
+        print(f'Computing cens from {Path(file).stem}')
+        training_file_cens_list.append(compute_cens_from_file(file))
+
     for test_index, test_file in enumerate(wav_test_list):
         file_to_match_length = {}
-        for index, f in enumerate(wav_train):
+        for train_index, f in enumerate(wav_train_list):
             # print(f'=== Query X: {Path(test_file).stem}; Database Y:{Path(f).stem}')
-            print(f'Testing file {test_index+1} / {len(wav_test_list)} - Comparing against {index+1} '
-                  f'/ {len(wav_train)}')
-            matches = compute_plot_matching_function_DTW(test_file, wav_train[index])
+            print(f'Testing file {test_index+1} / {len(wav_test_list)} ({Path(wav_test_list[test_index]).stem}) - '
+                  f'Comparing against {train_index+1} / {len(wav_train_list)} ({Path(wav_train_list[train_index]).stem})')
+            # matches = compute_plot_matching_function_DTW(test_file, wav_train_list[train_index])
+            matches = compute_plot_matching_function_DTW(test_file, training_file_cens_list[train_index][0])
             total = 0
             for (start, finish) in matches:
                 total += finish - start
