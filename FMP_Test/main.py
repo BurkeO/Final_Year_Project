@@ -120,7 +120,7 @@ def main():
     data_dir = "D:/Users/Owen/Final_Year_Project/Dev_Test_10_min_split"
     # data_dir = "D:/Users/Owen/Final_Year_Project/Dev_Test_Split_wavs"
     parent_list = os.listdir(f'{data_dir}/Common_Chiffchaff')
-    number_for_each = 100
+    number_for_each = 20
     chiffchaff_list = parent_list[:number_for_each]
     for i in range(len(chiffchaff_list)):
         chiffchaff_list[i] = f'{data_dir}/Common_Chiffchaff/{chiffchaff_list[i]}'
