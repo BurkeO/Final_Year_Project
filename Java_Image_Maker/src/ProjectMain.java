@@ -38,9 +38,9 @@ import static org.opencv.imgcodecs.Imgcodecs.imwrite;
 
 public class ProjectMain
 {
-    static{
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-    }
+//    static{
+//        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+//    }
 
     private static void splitWavFiles(File wavFileDirectory, File outputDirectory) throws FileSystemException
     {
@@ -59,12 +59,12 @@ public class ProjectMain
                 if(count > minCount)
                     break;
                 System.out.println("Working on " + audioFile.getName());
-                speciesOutputDirectory = new File(outputDirectory.getAbsolutePath() + "\\" + speciesDirectory.getName());
+                speciesOutputDirectory = new File(outputDirectory.getAbsolutePath() + "/" + speciesDirectory.getName());
                 if (!speciesOutputDirectory.exists())
                 {
                     speciesOutputDirectory.mkdirs();
                 }
-                String filename = speciesOutputDirectory.getAbsolutePath() + "\\" + audioFile.getName();
+                String filename = speciesOutputDirectory.getAbsolutePath() + "/" + audioFile.getName();
                 String normFilename = filename + "_norm";
                 String passFilename = normFilename + "_pass";
                 String noiseFilename = passFilename + "_afftdn";
@@ -95,7 +95,7 @@ public class ProjectMain
                 boolean silenceDeleted = new File(silenceFilename + ".wav").delete();
                 //
                 if(!normDeleted || !passDeleted || !noiseDeleted || !silenceDeleted)
-                    throw new FileSystemException("Failed to deleted file");
+                    throw new FileSystemException("Failed to delete file");
                 count =  speciesOutputDirectory.listFiles().length;
 //                    boolean wasDeleted = audioFile.delete();
 //                    if (!wasDeleted)
@@ -162,12 +162,12 @@ public class ProjectMain
 //                        }
 //                    }
 //                    Core.normalize(image, image, 0, 255, Core.NORM_MINMAX);
-                    File speciesOutputDirectory = new File(outputDirectory.getAbsolutePath() + "\\" + speciesDirectory.getName());
+                    File speciesOutputDirectory = new File(outputDirectory.getAbsolutePath() + "/" + speciesDirectory.getName());
                     if(!speciesOutputDirectory.exists())
                     {
                         speciesOutputDirectory.mkdirs();
                     }
-                    String filename = speciesOutputDirectory.getAbsolutePath() + "\\" + audioFile.getName();
+                    String filename = speciesOutputDirectory.getAbsolutePath() + "/" + audioFile.getName();
                     int pos = filename.lastIndexOf(".");
                     if (pos > 0)
                     {
@@ -182,13 +182,13 @@ public class ProjectMain
                     new ExecCommand("ffmpeg -i " + audioFile.getAbsolutePath() +
                             " -lavfi showspectrumpic=s=600x960:stop=10000 " + filename + ".png");
                     //https://www.wearethefirehouse.com/aspect-ratio-cheat-sheet
-                    Mat img = Imgcodecs.imread(filename+".png", Imgcodecs.IMREAD_COLOR);
-                    int borderWidth = 156;
-                    int borderHeigth = 60;
-                    Rect crop = new Rect(borderWidth, borderHeigth, img.width()-(borderWidth*2), img.height()-(borderHeigth*2));
-                    Mat croppedImage = new Mat(img, crop);
-                    new File(filename+".png").delete();
-                    imwrite(filename+".png", croppedImage);
+//                    Mat img = Imgcodecs.imread(filename+".png", Imgcodecs.IMREAD_COLOR);
+//                    int borderWidth = 156;
+//                    int borderHeigth = 60;
+//                    Rect crop = new Rect(borderWidth, borderHeigth, img.width()-(borderWidth*2), img.height()-(borderHeigth*2));
+//                    Mat croppedImage = new Mat(img, crop);
+//                    new File(filename+".png").delete();
+//                    imwrite(filename+".png", croppedImage);
                 }
             }
         }
@@ -339,7 +339,11 @@ public class ProjectMain
         int i = 0;
 //        splitWavFiles(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test"),
 //                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"));
-        generateImages(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"),
-                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Images"));
+//        generateImages(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"),
+//                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Images"));
+        splitWavFiles(new File("/content/gdrive/MyDrive/FYP/Two_Bird_Test"),
+                new File("/content/gdrive/MyDrive/FYP/Split_Two_Bird_Test"));
+        generateImages(new File("/content/gdrive/MyDrive/FYP/Split_Two_Bird_Test"),
+                new File("/content/gdrive/MyDrive/FYP/Split_Two_Bird_Test_Images"));
     }
 }
