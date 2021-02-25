@@ -341,9 +341,9 @@ public class ProjectMain
 //                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"));
 //        generateImages(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"),
 //                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Images"));
-        splitWavFiles(new File("/content/gdrive/MyDrive/FYP/Two_Bird_Test"),
-                new File("/content/gdrive/MyDrive/FYP/Split_Two_Bird_Test"));
-        generateImages(new File("/content/gdrive/MyDrive/FYP/Split_Two_Bird_Test"),
-                new File("/content/gdrive/MyDrive/FYP/Split_Two_Bird_Test_Images"));
+        splitWavFiles(new File("/content/gdrive/MyDrive/FYP/Twelve_Bird_Wav"),
+                new File("/content/gdrive/MyDrive/FYP/Split_Twelve_Bird_Wav"));
+        generateImages(new File("/content/gdrive/MyDrive/FYP/Split_Twelve_Bird_Wav"),
+                new File("/content/gdrive/MyDrive/FYP/Split_Twelve_Bird_Wav_Images"));
     }
 }
