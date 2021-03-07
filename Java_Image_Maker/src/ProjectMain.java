@@ -1,36 +1,19 @@
-import be.tarsos.dsp.AudioDispatcher;
-import be.tarsos.dsp.AudioEvent;
-import be.tarsos.dsp.AudioProcessor;
-import be.tarsos.dsp.io.TarsosDSPAudioFormat;
-import be.tarsos.dsp.io.UniversalAudioInputStream;
-import jm.util.Read;
-import me.gommeantilegit.sonopy.Sonopy;
+import com.musicg.wave.Wave;
+import com.musicg.wave.WaveHeader;
+import com.musicg.wave.extension.Spectrogram;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-import org.opencv.core.Rect;
 import org.opencv.imgcodecs.Imgcodecs;
 
-import javax.imageio.ImageIO;
-import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import java.awt.image.BufferedImage;
+import javax.swing.*;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.FileSystemException;
-import java.util.Arrays;
-import java.util.Objects;
-
-import org.tensorflow.Operand;
-import org.tensorflow.Output;
-import org.tensorflow.op.Scope;
-import org.tensorflow.op.audio.Mfcc;
-import org.tensorflow.op.audio.DecodeWav;
-import org.tensorflow.op.io.ReadFile;
-
-import be.tarsos.dsp.mfcc.MFCC;
 
 import static org.opencv.imgcodecs.Imgcodecs.imread;
 import static org.opencv.imgcodecs.Imgcodecs.imwrite;
@@ -38,9 +21,10 @@ import static org.opencv.imgcodecs.Imgcodecs.imwrite;
 
 public class ProjectMain
 {
-//    static{
-//        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-//    }
+    static
+    {
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+    }
 
     private static void splitWavFiles(File wavFileDirectory, File outputDirectory) throws FileSystemException
     {
@@ -56,7 +40,7 @@ public class ProjectMain
             int count = 0;
             for (File audioFile : audioFilesArray)
             {
-                if(count > minCount)
+                if (count > minCount)
                     break;
                 System.out.println("Working on " + audioFile.getName());
                 speciesOutputDirectory = new File(outputDirectory.getAbsolutePath() + "/" + speciesDirectory.getName());
@@ -94,25 +78,25 @@ public class ProjectMain
                 boolean noiseDeleted = new File(noiseFilename + ".wav").delete();
                 boolean silenceDeleted = new File(silenceFilename + ".wav").delete();
                 //
-                if(!normDeleted || !passDeleted || !noiseDeleted || !silenceDeleted)
+                if (!normDeleted || !passDeleted || !noiseDeleted || !silenceDeleted)
                     throw new FileSystemException("Failed to delete file");
-                count =  speciesOutputDirectory.listFiles().length;
+                count = speciesOutputDirectory.listFiles().length;
 //                    boolean wasDeleted = audioFile.delete();
 //                    if (!wasDeleted)
 //                    {
 //                        throw new FileSystemException("Couldn't delete" + audioFile.toString());
 //                    }
             }
-            if(i == 0 || count < minCount)
+            if (i == 0 || count < minCount)
             {
                 minCount = count;
             }
         }
-        for(File speciesOutputFile : speciesOutputDirectory.getParentFile().listFiles())
+        for (File speciesOutputFile : speciesOutputDirectory.getParentFile().listFiles())
         {
             File[] wavFiles = speciesOutputFile.listFiles();
             int numberToDelete = wavFiles.length - minCount;
-            for(int i = 0; i < numberToDelete; i++)
+            for (int i = 0; i < numberToDelete; i++)
             {
                 wavFiles[i].delete();
             }
@@ -163,7 +147,7 @@ public class ProjectMain
 //                    }
 //                    Core.normalize(image, image, 0, 255, Core.NORM_MINMAX);
                     File speciesOutputDirectory = new File(outputDirectory.getAbsolutePath() + "/" + speciesDirectory.getName());
-                    if(!speciesOutputDirectory.exists())
+                    if (!speciesOutputDirectory.exists())
                     {
                         speciesOutputDirectory.mkdirs();
                     }
@@ -175,7 +159,7 @@ public class ProjectMain
                     }
                     //Imgcodecs.imwrite(filename+".png", image);
                     //to start from left off
-                    if(new File(filename+".png").exists())
+                    if (new File(filename + ".png").exists())
                         continue;
                     //
                     System.out.println("Making image for " + audioFile.getName());
@@ -244,7 +228,7 @@ public class ProjectMain
         return Math.log(value) / Math.log(10);
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException, UnsupportedAudioFileException
+    public static void main(String[] args) throws Exception
     {
 //        File f = new File("D:/Users/Owen/Final_Year_Project/Dev_Recordings_Split_Wavs/Common_Wood_Pigeon/Common_Wood_Pigeon_0000.wav");
 //
@@ -341,9 +325,66 @@ public class ProjectMain
 //                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"));
 //        generateImages(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs"),
 //                new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Images"));
-        splitWavFiles(new File("/content/gdrive/MyDrive/FYP/Twelve_Bird_Wav"),
-                new File("/content/gdrive/MyDrive/FYP/Split_Twelve_Bird_Wav"));
-        generateImages(new File("/content/gdrive/MyDrive/FYP/Split_Twelve_Bird_Wav"),
-                new File("/content/gdrive/MyDrive/FYP/Split_Twelve_Bird_Wav_Images"));
+//        splitWavFiles(new File("/content/gdrive/MyDrive/FYP/Twelve_Bird_Wav"),
+//                new File("/content/gdrive/MyDrive/FYP/Split_Twelve_Bird_Wav"));
+//        generateImages(new File("/content/gdrive/MyDrive/FYP/Split_Twelve_Bird_Wav"),
+//                new File("/content/gdrive/MyDrive/FYP/Split_Twelve_Bird_Wav_Images"));
+        Wave wave = new Wave("clean.wav");
+        Spectrogram spectrogram = new Spectrogram(wave);
+        double[][] spectrogramArray = spectrogram.getAbsoluteSpectrogramData();
+
+
+//        int height = spectrogramArray.length;
+//        int width = spectrogramArray[0].length;
+//
+//        int[][] img = new int[height][width];
+//        for (int row = 0; row < height; row++)
+//        {
+//            for (int col = 0; col < width; col++)
+//            {
+//                int value;
+//                int color;
+//                value = 255 - (int) (spectrogramArray[row][col] * 255);
+//                color = (value << 16 | value << 8 | value | 255 << 24);
+//                img[row][col] = color;
+//            }
+//        }
+//        Mat image = new Mat(img.length, img[0].length, CvType.CV_8U);
+//        for (int row = 0; row < img.length; row++)
+//        {
+//            for (int col = 0; col < img[0].length; col++)
+//            {
+//                image.put(row, col, img[row][col]);
+//            }
+//        }
+
+        Mat image = new Mat(spectrogramArray.length, spectrogramArray[0].length, CvType.CV_8U);
+        for (int row = 0; row < spectrogramArray.length; row++)
+        {
+            for (int col = 0; col < spectrogramArray[0].length; col++)
+            {
+                image.put(row, col, spectrogramArray[row][col]);
+            }
+        }
+        //Core.normalize(image, image, 0, 255, Core.NORM_MINMAX);
+        Imgcodecs.imwrite("clean.png", image);
+
+        //ffmpeg -i "temp.wav" -f wav -bitexact -acodec pcm_s16le -ar 22050 -ac 1 "clean.wav"
+        //ffprobe -i clean.wav -show_entries format=duration -v quiet -of csv="p=0"
+
+//        SwingUtilities.invokeAndWait(() -> {
+//            try {
+//                UIManager.setLookAndFeel(UIManager
+//                        .getSystemLookAndFeelClassName());
+//            } catch (Exception e) {
+//                // ignore failure to set default look en feel;
+//            }
+//            JFrame frame = new SpectrogramTarsos("D:/Users/Owen/Final_Year_Project/Dev_Test_Split_wavs/Northern_Raven/Northern_Raven_11114.wav");
+//            frame.pack();
+//            frame.setSize(640, 480);
+//            frame.setVisible(true);
+//        });
+//        Spectrogram spec = new Spectrogram(new AudioFile(new File("D:\\Users\\Owen\\Final_Year_Project\\Dev_Test_Split_wavs\\Northern_Raven\\Northern_Raven_11114.wav")));
+//        spec.render("render.png");
     }
 }

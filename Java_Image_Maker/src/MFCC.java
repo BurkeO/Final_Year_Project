@@ -17,7 +17,7 @@ public class MFCC {
     private final static double    sampleRate           = 22000;
     private final static double    fMax                 = sampleRate/2.0;
 
-    FFT fft = new FFT();
+    FFTLibrosa fftLibrosa = new FFTLibrosa();
 
 
     public float[] process(double[] doubleInputBuffer) {
@@ -103,9 +103,9 @@ public class MFCC {
 
     private double[] magSpectrogram(double[] frame){
         double[] magSpec = new double[frame.length];
-        fft.process(frame);
+        fftLibrosa.process(frame);
         for (int m = 0; m < frame.length; m++) {
-            magSpec[m] = fft.real[m] * fft.real[m] + fft.imag[m] * fft.imag[m];
+            magSpec[m] = fftLibrosa.real[m] * fftLibrosa.real[m] + fftLibrosa.imag[m] * fftLibrosa.imag[m];
         }
         return magSpec;
     }
