@@ -64,15 +64,15 @@ class ModelSpecificInfo(object):
 _MODEL_INFO = {
     "model.tflite":
         ModelSpecificInfo(
-            name="BirdCall Classifier Binary",
-            version="v2",
+            name="BirdCall Classifier VGG19",
+            version="v1",
             image_width=224,
             image_height=224,
             image_min=0,
             image_max=255,
             mean=[127.5],
             std=[127.5],
-            num_classes=2)
+            num_classes=7)
 }
 
 

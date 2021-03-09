@@ -1,0 +1,7 @@
+Common_Blackbird
+Common_Chaffinch
+Eurasian_Blackcap
+European_Robin
+Northern_Raven
+Red_Crossbill
+Song_Sparrow

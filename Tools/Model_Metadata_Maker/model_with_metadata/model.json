@@ -1,7 +1,7 @@
 {
-  "name": "BirdCall Classifier Binary",
-  "description": "Identify the most prominent object in the image from a set of 2 categories.",
-  "version": "v2",
+  "name": "BirdCall Classifier VGG19",
+  "description": "Identify the most prominent object in the image from a set of 7 categories.",
+  "version": "v1",
   "subgraph_metadata": [
     {
       "input_tensor_metadata": [
@@ -40,7 +40,7 @@
       "output_tensor_metadata": [
         {
           "name": "probability",
-          "description": "Probabilities of the 2 labels respectively.",
+          "description": "Probabilities of the 7 labels respectively.",
           "content": {
             "content_properties_type": "FeatureProperties"
           },
