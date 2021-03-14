@@ -1,7 +1,6 @@
-Common_Blackbird
-Common_Chaffinch
-Eurasian_Blackcap
-European_Robin
+Atlantic_Puffin
+Eurasian_Bittern
+European_Nightjar
 Northern_Raven
-Red_Crossbill
-Song_Sparrow
+Red-throated_Loon
+Tui
