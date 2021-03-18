@@ -65,7 +65,7 @@ _MODEL_INFO = {
     "model.tflite":
         ModelSpecificInfo(
             name="Unique BirdCall Classifier VGG19",
-            version="v1",
+            version="v2",
             image_width=224,
             image_height=224,
             image_min=0,
