@@ -64,8 +64,8 @@ class ModelSpecificInfo(object):
 _MODEL_INFO = {
     "model.tflite":
         ModelSpecificInfo(
-            name="Unique BirdCall Classifier VGG19",
-            version="v2",
+            name="Full Recording Unique BirdCall Classifier VGG19",
+            version="v1",
             image_width=224,
             image_height=224,
             image_min=0,
