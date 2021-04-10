@@ -1,7 +1,13 @@
+import os
+import random
 from pathlib import Path
+from sys import maxsize
 
 import librosa
 import numpy
+
+from Test_Dejavu.dejavu.dejavu import Dejavu
+from Test_Dejavu.dejavu.dejavu.logic.recognizer.file_recognizer import FileRecognizer
 
 
 class BirdCall(object):
@@ -55,37 +61,62 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
-    # config = {
-    #     "database": {
-    #         "host": "127.0.0.1",
-    #         "user": "root",
-    #         # TODO remove password
-    #         "password":
-    #         "database": "birdsong",
-    #     },
-    #     "database_type": "mysql"
-    # }
-    # djv = Dejavu(config)
+    # main()
+    # fn_wav_all = []
+    # data_dir = Path("D:\\Users\\Owen\\Final_Year_Project\\Unique_Birds_Recordings_Even_Whole")
+    # for species_folder in data_dir.iterdir():
+    #     species = species_folder.stem
+    #     parent_list = os.listdir(f'{data_dir}\\{species}')
+    #     number_for_each = maxsize
+    #     species_list = parent_list[:number_for_each]
+    #     for i in range(len(species_list)):
+    #         species_list[i] = f'{data_dir}\\{species}\\{species_list[i]}'
+    #     fn_wav_all.extend(species_list)
     #
-    # for path in Path("birdsong_stitch").iterdir():
-    #     if path.is_dir():
-    #         djv.fingerprint_directory(str(path), [".mp3"])
-    # number_total = 0
-    # number_correct = 0
+    # random.Random(4).shuffle(fn_wav_all)
     #
-    # print(djv.db.get_num_fingerprints())
-    #
-    # for path in Path("birdsong_test").iterdir():
-    #     if path.is_dir():
-    #         species_name = str(path).split("\\")[1]
-    #         for file in path.iterdir():
-    #             number_total += 1
-    #             results = djv.recognize(FileRecognizer, str(file))
-    #             results_list = results['results']
-    #             results_list.sort(key=lambda res: res['fingerprinted_confidence'], reverse=True)
-    #             # print(f"From file we recognized: {results_list}\n")
-    #             if len(results_list) > 0 and species_name in results_list[0]['song_name'].decode('ascii'):
-    #                 number_correct += 1
-    #
-    # print(f"Accuracy = {(number_correct / number_total) * 100}%")
+    # test_percentage = 0.2
+    # wav_test_list = fn_wav_all[:int(len(fn_wav_all) * test_percentage)]
+    # wav_train_list = fn_wav_all[int(len(fn_wav_all) * test_percentage):]
+
+    # print("Test --------------")
+    # print("\n".join(wav_test_list))
+    # print("Train ------------")
+    # print("\n".join(wav_train_list))
+    # exit()
+
+
+    config = {
+        "database": {
+            "host": "127.0.0.1",
+            "user": "root",
+            # TODO remove password
+            "password": "database123",
+            "database": "birdsong"
+        },
+        "database_type": "mysql"
+    }
+    djv = Dejavu(config)
+
+    for path in Path("D:\\Users\\Owen\\Final_Year_Project\\Consistent_dataset\\train").iterdir():
+        if path.is_dir():
+            djv.fingerprint_directory(str(path), [".wav"])
+    number_total = 0
+    number_correct = 0
+
+    print(djv.db.get_num_fingerprints())
+
+    for path in Path("D:\\Users\\Owen\\Final_Year_Project\\Consistent_dataset\\train").iterdir():
+        if path.is_dir():
+            species_name = str(path).split("\\")[-1]
+            for file in path.iterdir():
+                number_total += 1
+                results = djv.recognize(FileRecognizer, str(file))
+                results_list = results['results']
+                results_list.sort(key=lambda res: res['fingerprinted_confidence'], reverse=True)
+                # print(f"From file we recognized: {results_list}\n")
+                if len(results_list) > 0 and species_name in results_list[0]['song_name'].decode('ascii'):
+                    print(f"Matched {species_name}")
+                    number_correct += 1
+
+    print(f"Accuracy = {(number_correct / number_total) * 100}%")

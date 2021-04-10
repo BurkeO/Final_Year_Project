@@ -1,9 +1,11 @@
 import argparse
-from requests import get
-import time
-from Tools.recordings_gatherer.recording import Recording
 import logging
+import time
 from pathlib import Path
+
+from requests import get
+
+from Tools.recordings_gatherer.recording import Recording
 
 LOGGER = logging.getLogger("recording logger")
 
@@ -76,11 +78,11 @@ def main(args: argparse.Namespace) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser("Pull audio files from Xeno Canto API using countries list file")
-    parser.add_argument('-c', '--countries_file', type=str,
+    parser.add_argument('-c', '--countries_file', type=str, required=True,
                         help="A file path to a txt file containing a list of countries separated by line breaks")
-    parser.add_argument('-o', '--output_dir', type=str,
+    parser.add_argument('-o', '--output_dir', type=str, required=True,
                         help="A path to the output directory to store the pulled audio file")
-    parser.add_argument('-l', '--log_path', type=str, help="A path to store a log file for the script")
+    parser.add_argument('-l', '--log_path', type=str, help="A path to store a log file for the script", required=True)
     return parser.parse_args()
 
 
