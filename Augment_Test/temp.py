@@ -69,7 +69,7 @@ def main():
     duration = librosa.get_duration(signal, sample_rate)
 
     # augment = Compose([AddBackgroundNoise("..\\Ambient-Sounds", p=0.75)])
-    process = ClippingDistortion(min_percentile_threshold=50, max_percentile_threshold=50, p=1)
+    process = Mp3Compression(p=1, min_bitrate=16, max_bitrate=16)
     augment = Compose([process])
 
     # print(AddBackgroundNoise.__name__)
