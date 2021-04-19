@@ -57,23 +57,27 @@ def main():
     # files_to_augment = make_audio_files("Atlantic_Puffin_0.wav")
     # print(files_to_augment)
 
-    operations = [AddGaussianNoise(max_amplitude=0.03, p=0.75), AddGaussianNoise(min_amplitude=0.002),
+    operations = [AddGaussianNoise(max_amplitude=0.03, p=1), AddGaussianNoise(min_amplitude=0.002),
                   Shift(min_fraction=-1, max_fraction=1, p=0.75), AddBackgroundNoise("..\\Ambient-Sounds", p=0.75),
                   AddShortNoises("..\\Ambient-Sounds"),
                   ClippingDistortion(min_percentile_threshold=20, max_percentile_threshold=30),
                   Gain(min_gain_in_db=-20, max_gain_in_db=20, p=0.625), Mp3Compression()]
 
-    signal, sample_rate = librosa.load('Atlantic_Puffin_0.wav')
+    audio_file_path_str = 'Northern_Raven_4.wav'
+
+    signal, sample_rate = librosa.load(audio_file_path_str)
     duration = librosa.get_duration(signal, sample_rate)
 
-    augment = Compose([AddBackgroundNoise("..\\Ambient-Sounds", p=0.75)])
+    # augment = Compose([AddBackgroundNoise("..\\Ambient-Sounds", p=0.75)])
+    process = ClippingDistortion(min_percentile_threshold=50, max_percentile_threshold=50, p=1)
+    augment = Compose([process])
 
-    print(AddBackgroundNoise.__name__)
+    # print(AddBackgroundNoise.__name__)
 
     # Augment/transform/perturb the audio data
     augmented_samples = augment(samples=signal, sample_rate=sample_rate)
 
-    sf.write('test.wav', augmented_samples, sample_rate)
+    sf.write(f'{type(process).__name__}-{Path(audio_file_path_str).stem}.wav', augmented_samples, sample_rate)
 
 
 if __name__ == '__main__':
