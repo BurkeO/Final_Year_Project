@@ -1,7 +1,0 @@
-*.pyc
-.DS_Store
-
-# ignore files created when preparing package for PyPi
-build/
-dist/
-libfmp.egg-info/

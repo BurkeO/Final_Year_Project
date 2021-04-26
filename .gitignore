@@ -143,6 +143,3 @@ plots
 venv
 recordings
 out
-test
-!Augment_Test/*.png
-!Augment_Test/*.wav

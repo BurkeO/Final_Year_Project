@@ -98,7 +98,7 @@ if __name__ == '__main__':
     }
     djv = Dejavu(config)
 
-    for path in Path("D:\\Users\\Owen\\Final_Year_Project\\Consistent_dataset\\train").iterdir():
+    for path in Path("D:\\Users\\Owen\\Final_Year_Project\\Top_Seven_Full_Recordings_Even_Train").iterdir():
         if path.is_dir():
             djv.fingerprint_directory(str(path), [".wav"])
     number_total = 0
@@ -106,7 +106,7 @@ if __name__ == '__main__':
 
     print(djv.db.get_num_fingerprints())
 
-    for path in Path("D:\\Users\\Owen\\Final_Year_Project\\Consistent_dataset\\train").iterdir():
+    for path in Path("D:\\Users\\Owen\\Final_Year_Project\\Top_Seven_Full_Recordings_Even_Validation").iterdir():
         if path.is_dir():
             species_name = str(path).split("\\")[-1]
             for file in path.iterdir():

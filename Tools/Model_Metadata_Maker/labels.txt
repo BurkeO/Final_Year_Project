@@ -1,6 +1,3 @@
-Atlantic_Puffin
-Eurasian_Bittern
-European_Nightjar
-Northern_Raven
-Red-throated_Loon
-Tui
+Common_Chaffinch
+Eurasian_Blackcap
+House_Wren

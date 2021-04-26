@@ -10,12 +10,17 @@ def main(args: argparse.Namespace):
     mp3_folder_path = Path(args.folder)
     for mp3_path in mp3_folder_path.glob('**/*.mp3'):
         src_mp3_absolute = str(mp3_path.absolute())
-        print(f'Converting {src_mp3_absolute}')
         species = str(mp3_path).split('\\')[-2]
         dst_wav_absolute = str(output_folder_path) + "\\" + species + "\\" + mp3_path.stem + ".wav"
+        if Path(dst_wav_absolute).exists():
+            continue
         Path(dst_wav_absolute).parent.mkdir(parents=True, exist_ok=True)
-        sound = AudioSegment.from_mp3(src_mp3_absolute)
-        sound.export(dst_wav_absolute, format="wav")
+        try:
+            sound = AudioSegment.from_mp3(src_mp3_absolute)
+            sound.export(dst_wav_absolute, format="wav")
+            print(f'Converted {src_mp3_absolute}')
+        except Exception as e:
+            print(f"Exception {e} for {src_mp3_absolute}")
 
 
 def parse_args() -> argparse.Namespace:
