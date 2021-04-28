@@ -31,9 +31,9 @@ def parse_args():
     parser = argparse.ArgumentParser("gather the number of files specified (or as close as possible) for each species "
                                      "in given list and save in specified folder")
     parser.add_argument('-n', '--number', type=int, help="number of each file to gather", default=maxsize)
-    parser.add_argument('-s', '--species', nargs='+', type=str, help="the list of species to gather")
-    parser.add_argument('-i', '--input', type=str, help="the input folder to gather files from")
-    parser.add_argument('-f', '--folder', type=str, help="the folder to save the files in")
+    parser.add_argument('-s', '--species', nargs='+', type=str, help="the list of species to gather", required=True)
+    parser.add_argument('-i', '--input', type=str, help="the input folder to gather files from", required=True)
+    parser.add_argument('-f', '--folder', type=str, help="the folder to save the files in", required=True)
     parser.add_argument('-e', '--extension', type=str, help="the extension of the audio files", default=".mp3")
     return parser.parse_args()
 

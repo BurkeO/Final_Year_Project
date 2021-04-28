@@ -26,9 +26,9 @@ def main(args: argparse.Namespace):
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser("convert all mp3 files in sub-folders to wav files")
     parser.add_argument('-f', '--folder', type=str,
-                        help="path to folder to convert all sub-file mp3s to wav files")
+                        help="path to folder to convert all sub-file mp3s to wav files", required=True)
     parser.add_argument('-o', '--output', type=str,
-                        help="output folder to save wav files")
+                        help="output folder to save wav files", required=True)
     return parser.parse_args()
 
 

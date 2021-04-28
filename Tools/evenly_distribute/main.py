@@ -1,10 +1,11 @@
+import argparse
 from pathlib import Path
 from shutil import copy
 
 
-def main():
-    recordings_dir = Path("D:/Users/Owen/Final_Year_Project/Top_Seven_Full_Recordings")
-    even_dir = Path("D:/Users/Owen/Final_Year_Project/Top_Seven_Full_Recordings_Even")
+def main(args: argparse.Namespace):
+    recordings_dir = Path(args.recordings)
+    even_dir = Path(args.even)
 
     species_to_count = {}
     for file in recordings_dir.glob('**/*.wav'):
@@ -41,5 +42,13 @@ def main():
             count += 1
 
 
+def parse_args():
+    parser = argparse.ArgumentParser("Evenly distribute a directory of birdsong recordings")
+    parser.add_argument('-r', '--recordings', type=str, help="path to folder that contains recordings", required=True)
+    parser.add_argument('-e', '--even', type=str, help="path to folder to write evenly distributed files",
+                        required=True)
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    main()
+    main(parse_args())

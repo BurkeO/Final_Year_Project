@@ -1,13 +1,14 @@
+import argparse
 import os
 from pathlib import Path
 import random
 from shutil import copy
 
 
-def main():
-    data_dir = "D:/Users/Owen/Final_Year_Project/Top_Seven_Full_Recordings_Even"
-    train_dir = "D:/Users/Owen/Final_Year_Project/Top_Seven_Full_Recordings_Even_Train"
-    validation_dir = "D:/Users/Owen/Final_Year_Project/Top_Seven_Full_Recordings_Even_Validation"
+def main(args: argparse.Namespace):
+    data_dir = args.recordings
+    train_dir = args.training
+    validation_dir = args.validation
     species_to_list = {}
     for folder in os.listdir(data_dir):
         species = folder
@@ -32,5 +33,16 @@ def main():
             print(f"Copied training file {file.name}")
 
 
+def parse_args():
+    parser = argparse.ArgumentParser("Split a directory of recordings into a training anc validation set (80/20)")
+    parser.add_argument('-r', '--recordings', type=str, help="path to folder that contains recordings",
+                        required=True)
+    parser.add_argument('-t', '--training', type=str, help="path to folder to write training files",
+                        required=True)
+    parser.add_argument('-v', '--validation', type=str, help="path to folder to write validation files",
+                        required=True)
+    return parser.parse_args()
+
+
 if __name__ == '__main__':
-    main()
+    main(parse_args())
