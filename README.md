@@ -1,14 +1,14 @@
 # Final Year Project
 ![bird](bird.png)
-## Investigating Methods of Birdsong Recogntion on Mobile Devices
+## Investigating Methods of Birdsong Recognition on Mobile Devices
 
 ### Intro
-* This repository contains the files and source code that accompanies the report found [here](https://github.com/BurkeO/Dissertation). Specifally, the source code for audio preprocessing and machine learning.
+* This repository contains the files and source code that accompanies the report found [here](https://github.com/BurkeO/Dissertation). Specifically, the source code for audio preprocessing and machine learning.
 * For the Android application, you will find it [here](https://github.com/BurkeO/Final_Year_Project_App).
 
 #### This repository contains:
 * [A set of audio files](Ambient-Sounds) for augmenting a dataset of birdsong recordings with different examples of background noise.
-* [An example dataset](Consistent_dataset) of bird species and there birdsong.
+* [An example dataset](Consistent_dataset) of bird species and their birdsong.
 * A set of [Google Colab Notebooks](Notebooks) for preprocessing the audio, evaluating certain methods and training a CNN that can be downloaded as a TensorflowLite file for the Android application.
 * An [already trained CNN model](Seven_Species_Model/model.tflite) on a set of seven different bird species and the [relevant classes](Seven_Species_Model/labels.txt).
 * The source code for an [audio-fingerprinting approach](Test_Dejavu/dejavu) <sup>[1]</sup>.
