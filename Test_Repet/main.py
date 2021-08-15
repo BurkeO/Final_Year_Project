@@ -5,6 +5,7 @@ import scipy
 
 def main():
     audio_path = 'Northern_Raven_4.wav'
+    # audio_path = r"D:\Users\Owen\Final_Year_Project\Recordings\Ireland\Common_Wood_Pigeon\372363\pigeon.wav"
     sample_rate, _ = scipy.io.wavfile.read(audio_path)
     audio_signal = nussl.AudioSignal(audio_path)
     separator = nussl.separation.primitive.Repet(
